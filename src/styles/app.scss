@@ -1,0 +1,97 @@
+/*
+ *
+ * Copyright 2017 Observational Health Data Sciences and Informatics
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Company: Odysseus Data Services, Inc.
+ * Product Owner/Architecture: Gregory Klebanov
+ * Authors: Pavel Grafkin, Alexander Saltykov
+ * Created: March 01, 2017
+ *
+ */
+
+/**
+ * App's general styling
+ */
+
+ /* fix for IE, font-face must go first */
+@import 'fonts.scss';
+@import 'reset.scss';
+@import 'tooltip.scss';
+@import 'vars-and-mixins';
+
+@import 'flexboxgrid/css/flexboxgrid.min';
+
+html {
+	font-size: 62.5%;
+	height: 100%;
+}
+
+html, body, input {
+	font-family: $font-family-helvetica;
+	font-weight: normal;
+	color: $black;
+}
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	min-width : 320px;
+	min-height: 100%;
+	font-size: $font-size-base;
+}
+
+textarea {
+	font-family: inherit;
+	font-size: inherit;
+	&:focus {
+		outline: none;
+	}
+}
+
+#app {
+	display: flex;
+	flex-grow: 1;
+}
+
+.row {
+	margin-right: -0.5rem;
+  margin-left: -0.5rem;
+}
+
+@media only screen and (min-width: 75em) {
+	.col-lg-5 {
+		flex-basis: 41.66%;
+	}
+}
+
+@for $i from 1 through 12 {
+  .col-xs-#{$i}, .col-md-#{$i}, .col-lg-#{$i} {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+}
+
+.ac-material-icons {
+  @include material-icon();
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  /* IE10+ CSS styles go here */
+  body {
+    height: 1px;
+  }
+}
