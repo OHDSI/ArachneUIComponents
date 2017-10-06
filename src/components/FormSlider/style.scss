@@ -1,0 +1,172 @@
+/*
+ *
+ * Copyright 2017 Observational Health Data Sciences and Informatics
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Company: Odysseus Data Services, Inc.
+ * Product Owner/Architecture: Gregory Klebanov
+ * Authors: Pavel Grafkin, Alexander Saltykov
+ * Created: March 01, 2017
+ *
+ */
+
+@import 'styles/vars-and-mixins.scss';
+
+.rc-slider-tooltip {
+  &-content {
+    display: none;
+    z-index: $z-index-select-outer;
+    position: absolute;
+    margin-top: 2.75rem;
+    margin-left: -0.5rem;
+  }
+
+  &-hidden {
+    z-index: 0;
+  }
+}
+
+.#{$namespace} {
+
+  &form-slider {
+    width: 100%;
+
+    &__inputs {
+      display: flex;
+      align-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1rem;
+
+    }
+
+    &__input {
+      /* For Edge */
+      width: 45%;
+    }
+    
+    &__dash {
+      margin: 0 1rem;
+    }
+
+
+    &__slider {
+      position: relative;
+      height: 14px;
+      padding: 1rem 0;
+      width: 100%;
+      border-radius: 6px;
+      margin-bottom: 2rem;
+
+      & .rc-slider-rail {
+        position: absolute;
+        width: 100%;
+        background-color: $white;
+        height: 1rem;
+        border: 1px solid $grey;
+        border-radius: 0.5rem;
+      }
+
+      & .rc-slider-track {
+        position: absolute;
+        left: 0;
+        height: 1rem;
+        border-radius: 0.5rem;
+        background-color: $green;
+      }
+
+      & .rc-slider-handle {
+        position: absolute;
+        margin-left: -7px;
+        margin-top: -5px;
+        width: 2rem;
+        height: 2rem;
+        cursor: pointer;
+        border-radius: 50%;
+        border: solid 1px $grey;
+        background-color: $white;
+
+        &:hover {
+          .rc-slider-tooltip-content {
+
+          }
+        }
+
+        &:before {
+          content: '';
+          content: attr(data-value);
+          position: absolute;
+          top: 22px;
+          white-space: nowrap;
+        }
+
+      }
+
+      & .rc-slider-handle-lower:before {
+        left: 0;
+      }
+      & .rc-slider-handle-upper:before {
+        right: 0;
+      }
+        
+      & .rc-slider-mark {
+        position: absolute;
+        top: 18px;
+        left: 0;
+        width: 100%;
+        font-size: 12px;
+      }
+
+      & .rc-slider-mark-text {
+        position: absolute;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        cursor: pointer;
+        color: #999;
+
+        &-active {
+          color: #666;
+        }
+      }
+
+      & .rc-slider-step {
+        position: absolute;
+        width: 100%;
+        height: 4px;
+        background: transparent;
+      }
+
+      & .rc-slider-dot {
+        position: absolute;
+        bottom: -2px;
+        margin-left: -4px;
+        width: 8px;
+        height: 8px;
+        border: 2px solid #e9e9e9;
+        background-color: #fff;
+        cursor: pointer;
+        border-radius: 50%;
+        vertical-align: middle;
+        &:first-child {
+          margin-left: -4px;
+        }
+        &:last-child {
+          margin-left: -4px;
+        }
+        &-active {
+          border-color: tint($grey, 50%);
+        }
+      }
+    }
+  }
+}

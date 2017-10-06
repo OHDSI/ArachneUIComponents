@@ -1,0 +1,344 @@
+/*
+ *
+ * Copyright 2017 Observational Health Data Sciences and Informatics
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Company: Odysseus Data Services, Inc.
+ * Product Owner/Architecture: Gregory Klebanov
+ * Authors: Pavel Grafkin, Alexander Saltykov
+ * Created: March 01, 2017
+ *
+ */
+
+@mixin form-island() {
+	width: 100%;
+	background: $grey;
+	box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+	padding: 25px;
+}
+
+@mixin input() {
+	font-size: $font-size-base;
+
+	width: 100%;
+	height: #{$input-height};
+
+	border: none;
+	border-radius: $input-border-radius;
+
+	padding: 8px 10px;
+	@at-root {
+		input#{&} {
+			padding: 0 10px;
+		}
+	}
+
+	&:focus {
+		outline: none;
+	}
+}
+
+@mixin text-ellipsis() {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+@mixin block-shadow() {
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+
+@mixin hover-color($color) {
+	color: darken($color, 15%);
+}
+
+@mixin title() {
+	font-family: $font-family-montserrat;
+	text-transform: uppercase;
+}
+
+@mixin input-border() {
+	border: 1px solid $grey;
+	border-radius: $input-border-radius;
+}
+
+@mixin status-circle() {
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+
+	&--green {
+	  background: $green;
+	}
+
+	&--blue {
+	  background: $blue;
+	}
+
+	&--red {
+	  background: $red;
+	}
+
+	&--orange {
+	  background: $orange;
+	}
+
+	&--purple {
+	  background: $purple;
+	}
+
+	&--grey {
+		background: $grey-placeholder;
+	}
+}
+
+@mixin background-doc-ico {
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-image: url('/img/icons/documents/others.png'); //default
+	&--excel {
+		background-image: url('/img/icons/documents/excel.png');
+	}
+	&--html {
+		background-image: url('/img/icons/documents/html.png');
+	}
+	&--image {
+		background-image: url('/img/icons/documents/image.png');
+	}
+	&--pdf {
+		background-image: url('/img/icons/documents/pdf.png');
+	}
+	&--ppt {
+		background-image: url('/img/icons/documents/ppt.png');
+	}
+	&--r {
+		background-image: url('/img/icons/documents/r.png');
+	}
+	&--sql {
+		background-image: url('/img/icons/documents/sql.png');
+	}
+	&--word {
+		background-image: url('/img/icons/documents/word.png');
+	}
+	&--cohort {
+		background-image: url('/img/icons/documents/cohort.png');
+	}
+	&--estimation {
+		background-image: url('/img/icons/documents/estimation.png');
+	}
+	&--packrat {
+		background-image: url('/img/icons/documents/packrat.png');
+	}
+	&--txt {
+		background-image: url('/img/icons/documents/txt.png');
+	}
+	&--link {
+		background-image: url('/img/icons/documents/link.png');
+	}
+	&--csv {
+		background-image: url('/img/icons/documents/excel.png');
+	}
+}
+
+@mixin user-select-none {
+	-webkit-user-select: none; /* webkit (safari, chrome) browsers */
+  -moz-user-select: none; /* mozilla browsers */
+  -khtml-user-select: none; /* webkit (konqueror) browsers */
+  -ms-user-select: none; /* IE10+ */
+}
+
+@mixin view-edit-page() {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	position: relative;
+
+	&__content {
+		background: $grey-lighter;
+		flex-grow: 1;
+		padding: 15px 30px;
+		position: relative;
+	}
+}
+
+@mixin form-error() {
+	display: block;
+	color: $red;
+	text-align: center;
+	margin-top: 12px;
+}
+
+@mixin form-warning() {
+	display: block;
+	color: $orange;
+	text-align: center;
+	margin-top: 12px;
+}
+
+@mixin form() {
+	$input-spacing: 12px;
+	$vertical-spacing: $input-spacing;
+	$horizontal-spacing: 20px;
+
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+
+	&__group {
+		margin-bottom: $vertical-spacing;
+
+		&--hidden {
+			margin: 0;
+			display: none;
+		}
+
+		&:empty {
+			display: none;
+		}
+	}
+
+	&__required-caption {
+		display: block;
+		font-style: italic;
+		margin-bottom: $vertical-spacing;
+	}
+
+	&__error {
+		@include form-error();
+	}
+
+	&__actions {
+		display: flex;
+		flex-direction: column;
+		margin-top: 15px;
+	}
+
+	&__submit, &__cancel {
+		display: block;
+		height: $submit-height;
+		padding: 0;
+	}
+
+	&__submit {
+	}
+	&__cancel {
+		margin-top: 10px;
+	}
+
+	&--actions-inline {
+		.#{$namespace} {
+			&form {
+				&__actions {
+					flex-direction: row;
+					margin-top: 0;
+				}
+				&__submit, &__cancel {
+					display: block;
+					margin-top: 0px;
+					padding-left: 15px;
+					padding-right: 15px;
+
+					&:not(:first-child) {
+						margin-left: 10px;
+					}
+				}
+			}
+		}
+	}
+
+	&--horizontal {
+		flex-direction: row;
+
+		.#{$namespace} {
+			&form {
+				&__group {
+					margin-bottom: 0px;
+
+					&:not(:last-child) {
+						margin-right: $horizontal-spacing;
+					}
+				}
+			}
+		}
+	}
+
+	&--spacing-sm {
+		.#{$namespace} {
+			&form {
+				&__group {
+					margin-bottom: 5px;
+				}
+				&__actions {
+					margin-top: 10px;
+				}
+				&__cancel {
+					margin-top: 7px;
+				}
+			}
+		}
+	}
+
+	&--spacing-actions-sm {
+		.#{$namespace} {
+			&form {
+				&__actions {
+					margin-top: 10px;
+				}
+				&__cancel {
+					margin-top: 7px;
+				}
+			}
+		}
+	}
+}
+
+@mixin title-secondary {
+	color: $grey-dark-light;
+	font-family: $font-family-montserrat;
+	font-size: 1.2rem;
+	text-transform: uppercase;
+}
+
+@mixin tabbed-modal() {
+  & .#{$namespace}tabs {
+    border-radius: 0;
+
+    &__item {
+      text-align: center;
+
+      &:not(:last-child) {
+        margin-right: 3px;
+      }
+    }
+  }
+
+  & .#{$namespace}tabbed-pane__content {
+    margin-top: 0;
+  }
+
+  & .#{$namespace}modal {
+
+    &__content-header {
+      display: none;
+    }
+
+    &__content {
+      border-radius: $input-border-radius;
+      overflow: hidden;
+
+      &-body {
+        padding: 0;
+      }
+    }
+  }
+}
