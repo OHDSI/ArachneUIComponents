@@ -121,7 +121,11 @@ const config = {
         },
         {
           from: path.join(rootPath, 'resources/fonts'),
-          to: path.join(outputPath, 'resources/fonts')
+          to: path.join(outputPath, 'resources/fonts'),
+        },
+        {
+          from: path.join(rootPath, 'resources/material-design-icons'),
+          to: path.join(outputPath, 'resources/material-design-icons'),
         },
       ]
     )

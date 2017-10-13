@@ -1,6 +1,6 @@
 {
   "name": "arachne-ui-components",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "licenses": [
     {
       "type": "Apache-2.0",
@@ -38,7 +38,6 @@
     "fuse.js": "^3.0.3",
     "keymirror": "^0.1.1",
     "lodash": "^4.17.2",
-    "material-design-icons": "^3.0.1",
     "numeral": "^2.0.4",
     "postinstall-build": "^2.0.0",
     "rc-slider": "5.4.3",
