@@ -26,11 +26,26 @@ import get from 'lodash/get';
 
 import actions from './actions';
 
+const ESC_KEY = 27;
+
 export default function connectModal({ name, persistant = false }) {
   return (WrappedComponent) => {
     class ReduxModal extends Component {
       componentWillMount() {
         this.props.registerModal(name);
+      }
+
+      componentWillReceiveProps(nextProps) {
+        if (this.props.modalState.isOpened === false && nextProps.modalState.isOpened === true) {
+          this.focusAfterRender = true;
+        }
+      }
+
+      componentDidUpdate() {
+        if (this.focusAfterRender) {
+          this.focusContent();
+          this.focusAfterRender = false;
+        }
       }
 
       componentWillUnmount() {
@@ -39,11 +54,31 @@ export default function connectModal({ name, persistant = false }) {
         }
       }
 
+      close = () => {
+        this.props.toggleModal(name, false);
+      }
+
+      focusContent = () => {
+        if (this.content) this.content.focus();
+      }
+
+      setContentRef = content => {
+        this.content = content;
+      }
+
+      handleKeyDown = event => {
+        if (event.keyCode === ESC_KEY) {
+          this.close();
+        }
+      }
+
       render() {
         const modal = {
           name,
           isActive: this.props.modalState.isOpened,
-          close: () => this.props.toggleModal(name, false),
+          close: this.close,
+          setContentRef: this.setContentRef,
+          handleKeyDown: this.handleKeyDown,
         };
 
         return (

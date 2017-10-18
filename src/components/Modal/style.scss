@@ -76,6 +76,9 @@
       text-align: left;
       vertical-align: middle;
       z-index: $z-index-modal-window;
+      &:focus {
+        outline: none;
+      }
     }
 
     &__close-ico {
