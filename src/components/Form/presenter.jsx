@@ -47,7 +47,15 @@ const Form = (props) => {
   const hasRequiredFields = fields.filter(field => field.required).length > 0;
 
   return (
-  	<form {...classes({ modifiers: mods, extra: className })} onSubmit={handleSubmit(onSubmit)}>
+  	<form
+      {...classes({ modifiers: mods, extra: className })}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' && e.ctrlKey === true) {
+          handleSubmit(onSubmit)();
+        };
+      }}
+      onSubmit={handleSubmit(onSubmit)}
+    >
       {fields.map((field, key) =>
         <Field {...field} {...classes('group', field.mods, field.className)} component={Fieldset} key={key}/>
       )}

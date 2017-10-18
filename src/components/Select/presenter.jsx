@@ -145,6 +145,7 @@ function Select(props) {
   return (
     <div
       {...classes({ modifiers: classNames({ disabled, expanded }, mods), extra: className })}
+      onFocus={onFocus}
       onKeyDown={(e) => {
         if (!expanded) {
           return false;

@@ -52,7 +52,13 @@ function Modal(props) {
         modal.close();
       }
     }}>
-      <div {...classes('content-wrapper')} onClick={e => e.stopPropagation()}>
+      <div
+        {...classes('content-wrapper')}
+        ref={modal.setContentRef}
+        tabIndex="0"
+        onKeyDown={modal.handleKeyDown}
+        onClick={e => e.stopPropagation()}
+      >
         <img
           {...classes('close-ico')}
           alt="close modal"
