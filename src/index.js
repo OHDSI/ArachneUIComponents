@@ -26,6 +26,7 @@ import BadgedIcon from 'components/BadgedIcon';
 import Button from 'components/Button';
 import Checkbox from 'components/Checkbox';
 import Datepicker from 'components/Datepicker';
+import ExpandableText from 'components/ExpandableText';
 import FacetedSearchPanel from 'components/FacetedSearchPanel';
 import Fieldset from 'components/Fieldset';
 import FileInput from 'components/FileInput';
@@ -86,6 +87,7 @@ export {
   Button,
   Checkbox,
   Datepicker,
+  ExpandableText,
   FacetedSearchPanel,
   Fieldset,
   FileInput,
