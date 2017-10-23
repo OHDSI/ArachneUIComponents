@@ -179,12 +179,21 @@ function Select(props) {
         />
       </div>
       <ul {...classes('options')}>
-        {options.map((option, key) =>
-          <Option
+        {options.map((option, key) => {
+          const selected = selectedOptions.indexOf(option) !== -1;
+          return <Option
             {...option}
-            selected={selectedOptions.indexOf(option) !== -1}
-            onSelect={(value) => { onChange(getVal(value)); onBlur(getVal(value)); }} key={key}
+            selected={selected}
+            onSelect={(selectedValue) => {
+              let nextValue = selectedValue;
+              if (!isMulti && selected) {
+                nextValue = null;
+              }
+              onChange(getVal(nextValue));
+              onBlur(getVal(nextValue));
+            }} key={key}
           />
+        }
         )}
       </ul>
     </div>
