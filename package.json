@@ -19,6 +19,9 @@
     }
   ],
   "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "build": "webpack",
     "prepublishOnly": "npm i && npm run build"
