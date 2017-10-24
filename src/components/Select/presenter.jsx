@@ -115,6 +115,9 @@ function Select(props) {
     onChange,
     options,
     placeholder,
+    tabIndex,
+    onMouseEnter,
+    onMouseLeave,
   } = props;
   let {
     mods,
@@ -162,11 +165,16 @@ function Select(props) {
           case 'Enter':
             onBlur(getVal(value));
             break;
+          case 'Tab':
+            onBlur(getVal(value));
+            break;
           default:
             break;
         }
       }}
-      tabIndex={isMulti ? null : '0'}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      tabIndex={tabIndex}
     >
       <div {...classes('outer')} onClick={() => onBlur(getVal(value))} />
       <input {...classes('input')} type="hidden" value={getVal(value)} />

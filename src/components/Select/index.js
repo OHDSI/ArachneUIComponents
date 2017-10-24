@@ -20,6 +20,6 @@
  *
  */
 
-import Select from './presenter';
+import Select from './stateful';
 
 export default Select;
