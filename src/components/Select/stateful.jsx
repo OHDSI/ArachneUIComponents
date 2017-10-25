@@ -47,10 +47,10 @@ class Select extends Component {
 
   render() {
     return presenter({
-      ...this.props,
-      expanded: this.state.expanded,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
+      expanded: this.state.expanded,
+      ...this.props,
     });
   }
 }

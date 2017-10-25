@@ -162,6 +162,9 @@ function Select(props) {
           case 'Enter':
             onBlur(getVal(value));
             break;
+          case 'Tab':
+            onBlur(getVal(value));
+            break;
           default:
             break;
         }
@@ -170,7 +173,7 @@ function Select(props) {
     >
       <div {...classes('outer')} onClick={() => onBlur(getVal(value))} />
       <input {...classes('input')} type="hidden" value={getVal(value)} />
-      <div {...classes('control')} onClick={() => expanded ? onBlur(getVal(value)) : onFocus()}>
+      <div {...classes('control')} onMouseDown={(e) => expanded ? onBlur(getVal(value)) : onFocus()}>
         <SelectControl
           mods={selectControlMods}
           placeholder={placeholder}

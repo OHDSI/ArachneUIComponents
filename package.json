@@ -1,6 +1,6 @@
 {
   "name": "arachne-ui-components",
-  "version": "1.2.2",
+  "version": "1.2.5",
   "licenses": [
     {
       "type": "Apache-2.0",
@@ -20,7 +20,9 @@
   ],
   "main": "lib/index.js",
   "files": [
-    "lib"
+    "lib",
+    "src",
+    "webpack.config"
   ],
   "scripts": {
     "build": "webpack",
