@@ -20,7 +20,9 @@
   ],
   "main": "lib/index.js",
   "files": [
-    "lib"
+    "lib",
+    "src",
+    "webpack.config"
   ],
   "scripts": {
     "build": "webpack",
