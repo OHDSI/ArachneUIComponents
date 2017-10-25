@@ -26,15 +26,11 @@ import presenter from './presenter';
 class Select extends Component {
   constructor(props) {
     super(props);
-    this.initialTabIndex = props.isMulti ? null : '0';
     this.state = {
       expanded: false,
-      tabIndex: this.initialTabIndex,
     };
     this.onFocus = this.onFocus.bind(this);
     this.onBlur = this.onBlur.bind(this);
-    this.onMouseEnter = this.onMouseEnter.bind(this);
-    this.onMouseLeave = this.onMouseLeave.bind(this);
   }
 
   onFocus() {
@@ -49,27 +45,12 @@ class Select extends Component {
     });
   }
 
-  onMouseEnter() {
-    this.setState({
-      tabIndex: null,
-    });
-  }
-
-  onMouseLeave() {
-    this.setState({
-      tabIndex: this.initialTabIndex,
-    });
-  }
-
   render() {
     return presenter({
       onFocus: this.onFocus,
       onBlur: this.onBlur,
       expanded: this.state.expanded,
       ...this.props,
-      tabIndex: this.state.tabIndex,
-      onMouseEnter: this.onMouseEnter,
-      onMouseLeave: this.onMouseLeave,
     });
   }
 }

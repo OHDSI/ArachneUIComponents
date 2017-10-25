@@ -115,9 +115,6 @@ function Select(props) {
     onChange,
     options,
     placeholder,
-    tabIndex,
-    onMouseEnter,
-    onMouseLeave,
   } = props;
   let {
     mods,
@@ -172,13 +169,11 @@ function Select(props) {
             break;
         }
       }}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      tabIndex={tabIndex}
+      tabIndex={isMulti ? null : '0'}
     >
       <div {...classes('outer')} onClick={() => onBlur(getVal(value))} />
       <input {...classes('input')} type="hidden" value={getVal(value)} />
-      <div {...classes('control')} onClick={() => expanded ? onBlur(getVal(value)) : onFocus()}>
+      <div {...classes('control')} onMouseDown={(e) => expanded ? onBlur(getVal(value)) : onFocus()}>
         <SelectControl
           mods={selectControlMods}
           placeholder={placeholder}
