@@ -115,7 +115,6 @@
 		}
 
 		&__comma {
-			padding-left: 3px;
 			padding-right: 7px;
 		}
 
@@ -160,6 +159,10 @@
 					}
 				}
 			}
+		}
+
+		&__selected-option-wrapper {
+			display: inline-block;
 		}
 	}
 
