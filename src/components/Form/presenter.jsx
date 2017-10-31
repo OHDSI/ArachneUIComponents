@@ -56,8 +56,12 @@ const Form = (props) => {
       }}
       onSubmit={handleSubmit(onSubmit)}
     >
-      {fields.map((field, key) =>
+      {fields.map((field, key) => [
+        field.InputComponent.props && field.InputComponent.props.title
+          ? <span {...classes('group-title')}>{field.InputComponent.props.title}</span>
+          : null,
         <Field {...field} {...classes('group', field.mods, field.className)} component={Fieldset} key={key}/>
+      ]
       )}
       {hasRequiredFields &&
         <span {...classes('required-caption')}>
