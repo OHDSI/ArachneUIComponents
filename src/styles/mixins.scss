@@ -148,6 +148,9 @@
 	&--csv {
 		background-image: url('/img/icons/documents/excel.png');
 	}
+	&--folder {
+		background-image: url('/img/icons/documents/folder.png');
+	}
 }
 
 @mixin user-select-none {
