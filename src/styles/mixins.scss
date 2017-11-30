@@ -154,6 +154,9 @@
 	&--report {
 		background-image: url('/img/icons/documents/chart.png');
 	}
+	&--cohortdefinition {
+		background-image: url('/img/icons/documents/cohort.png');
+	}
 }
 
 @mixin user-select-none {
