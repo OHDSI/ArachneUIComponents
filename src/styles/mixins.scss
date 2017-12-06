@@ -130,7 +130,7 @@
 	&--word {
 		background-image: url('/img/icons/documents/word.png');
 	}
-	&--cohort {
+	&--cohort, &--cohortdefinitionjson{
 		background-image: url('/img/icons/documents/cohort.png');
 	}
 	&--estimation {
@@ -147,6 +147,12 @@
 	}
 	&--csv {
 		background-image: url('/img/icons/documents/excel.png');
+	}
+	&--folder {
+		background-image: url('/img/icons/documents/folder.png');
+	}
+	&--report {
+		background-image: url('/img/icons/documents/chart.png');
 	}
 }
 
