@@ -26,7 +26,7 @@ import BEMHelper from 'services/BemHelper';
 
 require('./style.scss');
 
-function Toolbar({ caption, breadcrumbList, backUrl, onEdit, children, mods, isEditable }) {
+function Toolbar({ caption, breadcrumbList, backUrl, onEdit, children, mods, isEditable = false }) {
   const classes = new BEMHelper('toolbar');
 
   children = children instanceof Array ? children : [children];
