@@ -26,7 +26,7 @@ import BEMHelper from 'services/BemHelper';
 
 require('./style.scss');
 
-function Toolbar({ caption, breadcrumbList, backUrl, onEdit, children, mods }) {
+function Toolbar({ caption, breadcrumbList, backUrl, onEdit, children, mods, isEditable = false }) {
   const classes = new BEMHelper('toolbar');
 
   children = children instanceof Array ? children : [children];
@@ -58,7 +58,7 @@ function Toolbar({ caption, breadcrumbList, backUrl, onEdit, children, mods }) {
           <h1 {...classes('header')}>
             {caption}
           </h1>
-          {onEdit &&
+          {onEdit && isEditable &&
             <i {...classes('edit-ico')} onClick={onEdit}>
               edit
             </i>
