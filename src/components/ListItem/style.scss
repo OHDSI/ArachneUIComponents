@@ -1,0 +1,138 @@
+/*
+ *
+ * Copyright 2017 Observational Health Data Sciences and Informatics
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Company: Odysseus Data Services, Inc.
+ * Product Owner/Architecture: Gregory Klebanov
+ * Authors: Pavel Grafkin, Alexander Saltykov
+ * Created: March 01, 2017
+ *
+ */
+
+@import 'styles/vars-and-mixins.scss';
+
+.#{$namespace} {
+
+	&list-item {
+    display: flex;
+    border-bottom: 1px solid $grey-light;
+
+    &--borderless {
+      border-bottom: none;
+    }
+
+    &--hover {
+      &:hover {
+        background: $grey-light;
+      }
+    }
+
+    &--draggable {
+      .#{$namespace} {
+        &list-item {
+          &__drag {
+            display: flex;
+          }
+          &__content {
+            padding-left: 0;
+          }
+        }
+      }
+    }
+
+    &--removable {
+      .#{$namespace} {
+        &list-item {
+          &__content {
+            padding-right: 0;
+          }
+          &__remove {
+            display: flex;
+          }
+        }
+      }
+    }
+
+    &--add {
+      .#{$namespace} {
+        &list-item {
+          &__add {
+            display: flex;
+          }
+          &__content {
+            @include title-secondary();
+            cursor: pointer;
+            padding-left: 0;
+          }
+        }
+      }
+    }
+
+    &--actionable {
+      .#{$namespace} {
+        &list-item {
+          &__actions {
+            display: flex;
+          }
+          &__content {
+            padding-right: 0;
+          }
+        }
+      }
+    }
+
+    &__actions {
+      display: none;
+    }
+
+		&__drag, &__add, &__remove {
+      display: none;
+      cursor: pointer;
+      //padding: 0 20px;
+      justify-content: center;
+      width: 50px;
+		}
+
+    &__drag-ico, &__remove-ico {
+      align-self: center;
+      color: $grey-placeholder;
+
+      &:hover {
+        @include hover-color($grey-placeholder);
+      }
+    }
+
+    &__add-ico {
+      align-self: center;
+      color: $green;
+    }
+
+    &__content {
+      align-items: center;
+      display: flex;
+      flex: 1 1 auto;
+      padding: 0 20px; // padding: 15px 20px;
+      min-height: $list-item-min-height;
+      height: $list-item-min-height;
+      min-width: 0;
+    }
+
+    &__remove {
+      display: none;
+      cursor: pointer;
+      padding: 0 20px;
+    }
+	}
+
+}

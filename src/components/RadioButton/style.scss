@@ -1,0 +1,83 @@
+/*
+ *
+ * Copyright 2017 Observational Health Data Sciences and Informatics
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Company: Odysseus Data Services, Inc.
+ * Product Owner/Architecture: Gregory Klebanov
+ * Authors: Pavel Grafkin, Alexander Saltykov
+ * Created: March 01, 2017
+ *
+ */
+
+@import 'styles/vars-and-mixins.scss';
+
+.#{$namespace} {
+
+  &radio-button {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+
+    &--disabled {
+      cursor: initial;
+    }
+
+    &--checked {
+      .#{$namespace} {
+        &radio-button__check {
+          display: block !important;
+        }
+      }
+    }
+
+    &__input {
+      display: none;
+    }
+
+    &__box {
+      border: 1px solid $grey-placeholder;
+      border-radius: 50%;
+      height: 15px;
+      position: relative;
+      width: 15px;
+      display: flex;
+      align-items: center;
+
+      &--disabled {
+        border-color: lighten($grey-placeholder, 25%);
+      }
+    }
+
+    &__check {
+      background: $blue;
+      font-size: 2rem !important;
+      display: none !important;
+      font-weight: bold !important;
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      margin: 0 4px;
+
+      &--disabled {
+        background: lighten($blue, 25%);
+      }
+    }
+
+    &__radio-label {
+      margin-left: 1rem;
+    }
+
+  }
+
+}

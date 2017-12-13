@@ -1,0 +1,55 @@
+/*
+ *
+ * Copyright 2017 Observational Health Data Sciences and Informatics
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Company: Odysseus Data Services, Inc.
+ * Product Owner/Architecture: Gregory Klebanov
+ * Authors: Pavel Grafkin, Alexander Saltykov
+ * Created: March 01, 2017
+ *
+ */
+
+@import 'styles/vars-and-mixins.scss';
+@import 'styles/icons.scss';
+
+.#{$namespace} {
+
+	&badged-icon {
+		position: relative;
+    width: 26px;
+
+    &__icon {
+    	@include material-icon();
+    	color: $grey-menu-icon;
+    	font-size: 26px;
+    	position: absolute;
+    	top: 0px;
+    }
+		&__count {
+			position: absolute;
+	    background: $purple;
+	    border-radius: 50%;
+	    color: $white;
+	    font-size: 1rem;
+	    font-weight: 600;
+	    height: 1.5rem;
+	    line-height: 1.5rem;
+	    right: 0px;
+	    text-align: center;
+	    width: 1.5rem;
+	    top: -5px;
+		}
+	}
+
+}
