@@ -348,3 +348,19 @@
     }
   }
 }
+
+@mixin black-nav() {
+	@include title();
+	color: $white;
+	background: $black;
+	padding: 1.25rem 2rem;
+}
+
+@mixin spinning() {
+	@keyframes spin {
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+	animation: spin 1.5s linear infinite;
+}
