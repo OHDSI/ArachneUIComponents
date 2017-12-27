@@ -139,7 +139,7 @@
 	&--packrat {
 		background-image: url('/img/icons/documents/packrat.png');
 	}
-	&--txt {
+	&--txt, &--text {
 		background-image: url('/img/icons/documents/txt.png');
 	}
 	&--link {
@@ -153,6 +153,14 @@
 	}
 	&--report {
 		background-image: url('/img/icons/documents/chart.png');
+	}
+	&--home {
+		background-image: none;
+		background-color: $blue;
+		mask-image: url('/img/icons/documents/home.svg');
+		mask-repeat: no-repeat;
+		mask-size: contain;
+		mask-position: center;
 	}
 }
 
