@@ -20,6 +20,6 @@
  *
  */
 
-import LoadingPanel from './presenter';
+import LoadingPanel from './stateful';
 
 export default LoadingPanel;
