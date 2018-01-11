@@ -58,7 +58,6 @@ class LoadingPanel extends Component {
     }
     this.activityTimer = setTimeout(() => {
       this.setActive(false);
-      this.deactivateTimer();
     }, this.activityTimeout);
   }
 
