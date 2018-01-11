@@ -29,6 +29,10 @@ require('./style.scss');
 
 function Panel({ id, className, mods, title, headerBtns, children, onWheel }) {
   const classes = new BEMHelper('panel');
+  let extraClasses = () => ({ className: '' });
+  if (className) {
+    extraClasses = new BEMHelper(className, false);
+  }
 
   return (
     <div
@@ -36,8 +40,8 @@ function Panel({ id, className, mods, title, headerBtns, children, onWheel }) {
       id={id}
       onWheel={onWheel}
     >
-      <div {...classes('header')}>
-        <h3 {...classes('title')}>
+      <div {...classes('header', null, extraClasses('panel-header').className)}>
+        <h3 {...classes('title', null, extraClasses('panel-title').className)}>
           {title}
         </h3>
         {headerBtns &&
@@ -46,7 +50,7 @@ function Panel({ id, className, mods, title, headerBtns, children, onWheel }) {
           </div>
         }
       </div>
-      <div {...classes('content')}>
+      <div {...classes('content', null, extraClasses('panel-content').className)}>
         {children}
       </div>
     </div>
