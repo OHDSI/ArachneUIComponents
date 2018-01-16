@@ -48,7 +48,6 @@ class CustomAccordionItem extends AccordionItem {
   onTransitionEnd() {
     this.setState({
       overflow: this.props.expanded && this.props.isClosable ? 'auto' : 'hidden',
-      maxHeight: null,
     });
   }
 
