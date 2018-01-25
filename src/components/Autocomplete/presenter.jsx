@@ -36,6 +36,9 @@ class Autocomplete extends Component {
     const classes = new BEMHelper('autocomplete');
     const materialClasses = new BEMHelper('material-icons');
     let refSelect;
+    const {
+      useSearchIcon = true,
+    } = this.props;
 
     return (
       <div {...classes({ modifiers: this.props.mods })}>
@@ -65,6 +68,7 @@ class Autocomplete extends Component {
             autoBlur
             simpleValue
             {...this.props}
+            ref={this.props.reference}
             onInputChange={(inputValue) => {
               this.props.onChange(null);
               this.props.fetchOptions({ query: inputValue });
@@ -72,11 +76,13 @@ class Autocomplete extends Component {
             onBlur={() => this.props.onBlur(this.props.value || null)}
           />
         }
-        <div {...classes('search')}>
-          <i {...classes({ element: 'search-ico', extra: materialClasses({ modifiers: 'medium' }).className })}>
-            search
-          </i>
-        </div>
+        {useSearchIcon &&
+          <div {...classes('search')}>
+            <i {...classes({ element: 'search-ico', extra: materialClasses({ modifiers: 'medium' }).className })}>
+              search
+            </i>
+          </div>
+        }
       </div>
     );
   }
