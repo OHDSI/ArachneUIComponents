@@ -37,7 +37,7 @@ const Fieldset = ({ className, InputComponent, /* redux-form props */ input, met
         input={input}
         meta={meta}
       />
-      {errors && errors.map(er => <span {...classes('error')}>{er}</span>)}
+      {errors && errors.map(er =>  er && <span {...classes('error')}>{er}</span>)}
       {meta.warning &&
         <span {...classes('warning')}>{meta.warning}</span>
       }
