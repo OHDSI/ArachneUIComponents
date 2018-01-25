@@ -30,7 +30,7 @@ require('./style.scss');
 function AppLink(props) {
   const classes = new BEMHelper('link');
   let isExternal = false;
-  if(props.to) {
+  if (props.to) {
     const url = new URI(props.to);
     isExternal = url.is("absolute");
   }
@@ -48,7 +48,12 @@ function AppLink(props) {
     :
     <Link
       {...props}
-      {...classes({ extra: props.className })}
+      {...classes({
+        extra: props.className,
+        modifiers: {
+          disabled: props.disabled,
+        }
+      })}
       onClick={(e) => { e.stopPropagation(); props.onClick && props.onClick(e); }}
     >
       {props.children}
@@ -60,6 +65,7 @@ AppLink.propTypes = {
   children: PropTypes.node,
   className: PropTypes.any,
   onClick: PropTypes.func,
+  disabled: PropTypes.bool,
 }
 
 export default AppLink;

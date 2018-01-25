@@ -29,6 +29,11 @@
 		cursor: pointer;
 		font-weight: $font-weight-middle;
 		text-decoration: none;
+
+		&--disabled {
+			pointer-events: none;
+			filter: grayscale(100%);
+		}
 	}
 
 }
