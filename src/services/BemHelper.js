@@ -24,7 +24,7 @@ import BEMHelper from 'react-bem-helper';
 
 function AppBEMHelper(params, usePrefix = true) {
   let appParams = {
-    prefix: usePrefix ? 'ac-' : null,
+    prefix: usePrefix ? 'ac-' : '',
   };
 
   if (typeof params === 'string') {
