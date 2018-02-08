@@ -27,6 +27,7 @@ require('./style.scss');
 
 const Fieldset = ({ className, InputComponent, /* redux-form props */ input, meta }) => {
   const classes = new BEMHelper('fieldset');
+  const errors = Array.isArray(meta.error) ? meta.error : [meta.error];
 
   return (
     <fieldset {...classes({ extra: className })}>
@@ -36,9 +37,7 @@ const Fieldset = ({ className, InputComponent, /* redux-form props */ input, met
         input={input}
         meta={meta}
       />
-      {meta.error &&
-        <span {...classes('error')}>{meta.error}</span>
-      }
+      {errors && errors.map(er =>  er && <span {...classes('error')}>{er}</span>)}
       {meta.warning &&
         <span {...classes('warning')}>{meta.warning}</span>
       }
