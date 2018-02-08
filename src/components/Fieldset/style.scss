@@ -25,11 +25,7 @@
 .#{$namespace} {
 
 	&fieldset {
-		min-width: 0;
-	
-		&__error {
-			@include form-error();
-		}
+		min-width: 0;		
 
 		&__warning {
 			@include form-warning();
