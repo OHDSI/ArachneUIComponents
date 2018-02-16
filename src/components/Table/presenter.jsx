@@ -75,6 +75,7 @@ function Table(props) {
 
   const {
     onRowClick,
+    reference,
   } = props;
 
   let tableContent;
@@ -122,7 +123,7 @@ function Table(props) {
   }
 
   return (
-    <table {...classes({ modifiers: props.mods, extra: props.className })}>
+    <table {...classes({ modifiers: props.mods, extra: props.className })} ref={reference}>
       <thead>
         <tr {...classes('header-row')}>
           {React.Children.map(props.children, child =>
