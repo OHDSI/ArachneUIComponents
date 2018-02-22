@@ -33,7 +33,13 @@ function TableCellLink(props) {
     <Link
 	    {...classes({ modifiers: props.mods })}
 	    to={props.value.link}
-	    onClick={(e) => { e.stopPropagation(); }}
+	    onClick={(e) => {
+	    	
+	    	e.stopPropagation();
+	    	if (typeof props.value.onClick === 'function') {
+	    		props.value.onClick();
+	    	}
+	    }}
     >{props.value.label}</Link>
   );
 }

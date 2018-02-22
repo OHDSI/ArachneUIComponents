@@ -70,6 +70,7 @@ class Autocomplete extends Component {
               this.props.fetchOptions({ query: inputValue });
             }}
             onBlur={() => this.props.onBlur(this.props.value || null)}
+            filterOptions={this.props.filterOptions}
           />
         }
         <div {...classes('search')}>
@@ -92,6 +93,7 @@ Autocomplete.propTypes = {
   canCreateNewOptions: PropTypes.bool,
   promptTextCreator: PropTypes.func,
   onNewOptionClick: PropTypes.func,
+  filterOptions: PropTypes.func,
 };
 
 export default Autocomplete;
