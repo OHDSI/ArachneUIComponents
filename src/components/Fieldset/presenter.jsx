@@ -22,6 +22,7 @@
 
 import React, { PropTypes } from 'react';
 import BEMHelper from 'services/BemHelper';
+import FormError from './components/FormError';
 
 require('./style.scss');
 
@@ -37,7 +38,7 @@ const Fieldset = ({ className, InputComponent, /* redux-form props */ input, met
         input={input}
         meta={meta}
       />
-      {errors && errors.map(er =>  er && <span {...classes('error')}>{er}</span>)}
+      {errors && errors.map(er =>  er && <FormError error={er} />)}
       {meta.warning &&
         <span {...classes('warning')}>{meta.warning}</span>
       }
