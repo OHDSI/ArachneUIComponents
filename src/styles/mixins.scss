@@ -297,6 +297,22 @@
 		}
 	}
 
+	&--no-spacing {
+		.#{$namespace} {
+			&form {
+				&__group {
+					margin-bottom: 0;
+				}
+				&__actions {
+					margin-top: 10px;
+				}
+				&__cancel {
+					margin-top: 7px;
+				}
+			}
+		}
+	}
+
 	&--spacing-actions-sm {
 		.#{$namespace} {
 			&form {
