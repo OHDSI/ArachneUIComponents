@@ -38,6 +38,7 @@ function FormAutocomplete(props) {
     promptTextCreator,
     onNewOptionClick,
     optionRenderer,
+    filterOptions,
     // redux-form props
     input,
     meta,
@@ -55,6 +56,7 @@ function FormAutocomplete(props) {
       promptTextCreator={promptTextCreator}
       onNewOptionClick={onNewOptionClick}
       optionRenderer={optionRenderer}
+      filterOptions={filterOptions}
       {...input}
     />
   );
@@ -73,6 +75,7 @@ FormAutocomplete.propTypes = {
   promptTextCreator: PropTypes.func,
   onNewOptionClick: PropTypes.func,
   optionRenderer: PropTypes.func,
+  filterOptions: PropTypes.func,
 }
 
 export default FormAutocomplete;
