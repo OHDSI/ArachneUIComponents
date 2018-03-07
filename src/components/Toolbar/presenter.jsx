@@ -22,6 +22,7 @@
 
 import React from 'react';
 import Link from 'components/Link/index';
+import Breadcrumbs from 'components/Breadcrumbs';
 import BEMHelper from 'services/BemHelper';
 
 require('./style.scss');
@@ -65,13 +66,7 @@ function Toolbar({ caption, breadcrumbList, backUrl, onEdit, children, mods, isE
           }
         </div>
         {breadcrumbList &&
-          <ul {...classes('breadcrumb-list')}>
-            {breadcrumbList.map((breadcrumb, key) =>
-              <li {...classes('breadcrumb')} key={key}>
-                <Link to={breadcrumb.link}>{breadcrumb.label}</Link>
-              </li>
-            )}
-          </ul>
+          <Breadcrumbs data={breadcrumbList} />
         }
       </div>
       {blocks}
