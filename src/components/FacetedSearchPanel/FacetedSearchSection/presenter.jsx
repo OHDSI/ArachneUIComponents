@@ -152,6 +152,23 @@ class CustomAccordionItem extends AccordionItem {
             />
             : null
           }
+          {(type === 'STRING' && Array.isArray(options)) ?
+            <Field
+              component={Fieldset}
+              name={name}
+              InputComponent={
+                {
+                  component: FormCheckboxListFilterable,
+                  props: {
+                    options,
+                    emptyOptionsDisabled,
+                    hasFilter: this.state.hasFilter,
+                  }
+                }
+              }
+            />
+            : null
+          }
           {type === 'TOGGLE' &&
             <Field
               component={Fieldset}
