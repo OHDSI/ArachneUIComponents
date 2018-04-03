@@ -48,14 +48,17 @@ class Autocomplete extends Component {
             {...classes('select')}
             simpleValue
             {...this.props}
+            onChange={this.props.onChange}
             onInputChange={(inputValue) => {
-              this.props.onChange(null);
               this.props.fetchOptions({ query: inputValue });
+              return inputValue;
             }}
             onNewOptionClick={(opt) => {
-              this.props.onNewOptionClick(opt).then(() => {
-                this.props.fetchOptions({ query: null });
-                refSelect.blurInput();
+              this.props.onNewOptionClick(opt).then((val) => {
+                // Select's onBlur resets inputValue to '' and triggers onInputChange - 
+                // list of options will be reloaded there
+                this.props.onChange(val);
+                refSelect.handleInputBlur();
               });
             }}
             onBlur={() => this.props.onBlur(this.props.value || null)}
