@@ -88,7 +88,6 @@ class Autocomplete extends Component {
               this.props.fetchOptions({ query: inputValue });
               return inputValue;
             }}
-            onSelectResetsInput={false}
             onBlur={() => {
               this.setFocus(false);
               return this.props.onBlur(this.props.value || null);
