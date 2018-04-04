@@ -27,6 +27,14 @@ import Select, { Creatable } from 'react-select';
 require('./style.scss');
 
 class Autocomplete extends Component {
+  constructor(props) {
+    super(props);
+    this.isFocused = false;
+  }
+
+  setFocus(isFocused) {
+    this.isFocused = isFocused;
+  }
 
   componentWillMount() {
     this.props.fetchOptions({ query: null });
@@ -73,10 +81,21 @@ class Autocomplete extends Component {
             {...this.props}
             ref={this.props.reference}
             onInputChange={(inputValue) => {
+              if (!this.isFocused) {
+                return inputValue;
+              }
               this.props.onChange(null);
               this.props.fetchOptions({ query: inputValue });
+              return inputValue;
             }}
-            onBlur={() => this.props.onBlur(this.props.value || null)}
+            onSelectResetsInput={false}
+            onBlur={() => {
+              this.setFocus(false);
+              return this.props.onBlur(this.props.value || null);
+            }}
+            onFocus={() => {
+              this.setFocus(true);
+            }}
             filterOptions={this.props.filterOptions}
           />
         }
