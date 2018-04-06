@@ -49,7 +49,6 @@ class Autocomplete extends Component {
       onBlur: () => this.props.onBlur(this.props.value || null),
       onSelectResetsInput: false,
       onBlurResetsInput: false,
-      
     };
 
     return (
@@ -61,10 +60,6 @@ class Autocomplete extends Component {
             simpleValue
             {...this.props}
             {...commonSettings}
-            onChange={(value) => {
-              refSelect.handleInputBlur();
-              this.props.onChange(value);
-            }}
             onNewOptionClick={(opt) => {
               this.props.onNewOptionClick(opt).then((val) => {
                 refSelect.handleInputBlur();
