@@ -117,6 +117,7 @@ function Select(props) {
     onChange,
     options,
     placeholder,
+    unselectable = true,
   } = props;
   let {
     mods,
@@ -196,7 +197,7 @@ function Select(props) {
             selected={selected}
             onSelect={(selectedValue) => {
               let nextValue = selectedValue;
-              if (!isMulti && selected) {
+              if (!isMulti && selected && unselectable) {
                 nextValue = null;
               }
               onChange(getVal(nextValue));

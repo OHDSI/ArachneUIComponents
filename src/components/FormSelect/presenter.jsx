@@ -35,6 +35,7 @@ function FormSelect(props) {
     mods,
     options,
     placeholder,
+    unselectable = true,
     /* redux-form props */
     input,
     meta,
@@ -53,6 +54,7 @@ function FormSelect(props) {
       onFocus={() => input.onFocus()}
       onBlur={() => input.onBlur()}
       onChange={val => input.onChange(val)}
+      unselectable={unselectable}
     />
   );
 }
@@ -66,6 +68,7 @@ FormSelect.propTypes = {
   mods: PropTypes.any,
   options: PropTypes.array.isRequired,
   placeholder: PropTypes.string,
+  unselectable: PropTypes.bool,
 }
 
 export default FormSelect;

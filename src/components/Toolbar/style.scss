@@ -24,84 +24,69 @@
 
 .#{$namespace} {
 
-	&toolbar {
-		$toolbar-color: #EBEBEB;
+  &toolbar {
+    $toolbar-color: #EBEBEB;
 
-		align-items: center;
-		background: $toolbar-color;
-		display: flex;
-		padding: 18px 30px;
-		flex-shrink: 0;
+    align-items: center;
+    background: $toolbar-color;
+    display: flex;
+    padding: 18px 30px;
+    flex-shrink: 0;
 
-		&__back {
-			align-items: center;
-			background: $grey-dark-light;
-			border-radius: 2px;
-			display: flex;
-			justify-content: center;
-			height: 30px;
-			margin-right: 15px;
-			width: 30px;
-		}
+    &__back {
+      align-items: center;
+      background: $grey-dark-light;
+      border-radius: 2px;
+      display: flex;
+      justify-content: center;
+      height: 30px;
+      margin-right: 15px;
+      width: 30px;
+    }
 
-		&__back-icon {
-			@include material-icon();
-			color: $white;
-			font-size: 2.4rem;
-		}
+    &__back-icon {
+      @include material-icon();
+      color: $white;
+      font-size: 2.4rem;
+    }
 
-		&__header-wrapper {
-			display: flex;
-		}
+    &__header-wrapper {
+      display: flex;
+    }
 
-		&__header {
-			font-family: $font-family-montserrat;
-			font-size: $font-size-header;
-			line-height: 30px;
-			text-transform: uppercase;
-		}
+    &__header {
+      font-family: $font-family-montserrat;
+      font-size: $font-size-header;
+      line-height: 30px;
+      text-transform: uppercase;
+    }
 
-		&__breadcrumb-list {
-		}
+    &__edit-ico {
+      @include material-icon();
+      color: $blue-light;
+      cursor: pointer;
+      font-size: 2.2rem;
+      margin-left: 10px;
+      padding-top: 3px;
+    }
 
-		&__breadcrumb {
-			@include title();
-			display: inline;
-			margin-top: 5px;
-			&:not(:first-child) {
-				&:before {
-					content: "•";
-					padding: 0 7px;
-				}
-			}
-		}
+    &__block-list {
+      align-items: center;
+      display: flex;
+      margin-left: auto;
+    }
 
-		&__edit-ico {
-			@include material-icon();
-			color: $blue-light;
-			cursor: pointer;
-			font-size: 2.2rem;
-			margin-left: 10px;
-			padding-top: 3px;
-		}
+    &__block {
+      margin-left: 25px;
+    }
 
-		&__block-list {
-			align-items: center;
-			display: flex;
-			margin-left: auto;
-		}
-
-		&__block {
-			margin-left: 25px;
-		}
-
-		&--sm-block-spacing {
-			.#{$namespace} {
-				&toolbar__block {
-					margin-left: 1rem;
-				}
-			}
-		}
-	}
+    &--sm-block-spacing {
+      .#{$namespace} {
+        &toolbar__block {
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
 
 }
