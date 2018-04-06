@@ -40,32 +40,37 @@ class Autocomplete extends Component {
       useSearchIcon = true,
     } = this.props;
 
+    const commonSettings = {
+      onInputChange: (inputValue) => {
+        this.props.onChange(null);
+        this.props.fetchOptions({ query: inputValue });
+        return inputValue;
+      },
+      onBlur: () => this.props.onBlur(this.props.value || null),
+      onSelectResetsInput: false,
+      onBlurResetsInput: false,
+      
+    };
+
     return (
       <div {...classes({ modifiers: this.props.mods })}>
         {this.props.canCreateNewOptions ?
           <Creatable
-            ref={(element) => { if(element !== null) refSelect = element.select; }}
+            ref={(element) => { if (element !== null) refSelect = element.select; }}
             {...classes('select')}
             simpleValue
             {...this.props}
+            {...commonSettings}
             onChange={(value) => {
               refSelect.handleInputBlur();
               this.props.onChange(value);
             }}
-            onInputChange={(inputValue) => {
-              this.props.fetchOptions({ query: inputValue });
-              return inputValue;
-            }}
             onNewOptionClick={(opt) => {
               this.props.onNewOptionClick(opt).then((val) => {
-                // Select's onBlur resets inputValue to '' and triggers onInputChange - 
-                // list of options will be reloaded there
-                this.props.onChange(val);
                 refSelect.handleInputBlur();
+                this.props.onChange(val);
               });
             }}
-            onBlur={() => this.props.onBlur(this.props.value || null)}
-            onBlurResetsInput={false}
             promptTextCreator={this.props.promptTextCreator}
             scrollMenuIntoView={false}
           />
@@ -75,15 +80,8 @@ class Autocomplete extends Component {
             autoBlur
             simpleValue
             {...this.props}
+            {...commonSettings}
             ref={this.props.reference}
-            onInputChange={(inputValue) => {
-              this.props.onChange(null);
-              this.props.fetchOptions({ query: inputValue });
-              return inputValue;
-            }}
-            onBlur={() =>  this.props.onBlur(this.props.value || null)}
-            onSelectResetsInput={false}
-            onBlurResetsInput={false}
             filterOptions={this.props.filterOptions}
           />
         }
