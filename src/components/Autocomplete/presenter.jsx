@@ -49,8 +49,8 @@ class Autocomplete extends Component {
             simpleValue
             {...this.props}
             onChange={(value) => {
-              this.props.onChange(value);
               refSelect.handleInputBlur();
+              this.props.onChange(value);
             }}
             onInputChange={(inputValue) => {
               this.props.fetchOptions({ query: inputValue });
@@ -65,6 +65,7 @@ class Autocomplete extends Component {
               });
             }}
             onBlur={() => this.props.onBlur(this.props.value || null)}
+            onBlurResetsInput={false}
             promptTextCreator={this.props.promptTextCreator}
             scrollMenuIntoView={false}
           />
