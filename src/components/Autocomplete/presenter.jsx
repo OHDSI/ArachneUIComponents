@@ -41,6 +41,7 @@ class Autocomplete extends Component {
     } = this.props;
 
     const commonSettings = {
+      autoBlur: true,
       onInputChange: (inputValue) => {
         this.props.onChange(null);
         this.props.fetchOptions({ query: inputValue });
@@ -62,7 +63,7 @@ class Autocomplete extends Component {
             {...commonSettings}
             onNewOptionClick={(opt) => {
               this.props.onNewOptionClick(opt).then((val) => {
-                refSelect.handleInputBlur();
+                refSelect.blurInput();
                 this.props.onChange(val);
               });
             }}
@@ -71,8 +72,7 @@ class Autocomplete extends Component {
           />
           :            
           <Select
-            {...classes('select')}
-            autoBlur
+            {...classes('select')}            
             simpleValue
             {...this.props}
             {...commonSettings}
