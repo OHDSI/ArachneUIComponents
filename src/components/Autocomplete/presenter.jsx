@@ -50,10 +50,18 @@ class Autocomplete extends Component {
       onBlur: () => this.props.onBlur(this.props.value || null),
       onSelectResetsInput: false,
       onBlurResetsInput: false,
+      disabled: this.props.disabled,
     };
 
     return (
-      <div {...classes({ modifiers: this.props.mods })}>
+      <div
+        {...classes({
+          modifiers: this.props.mods,
+          extra: this.props.wrapperClassName,
+        })}
+        aria-label={this.props.ariaLabel}
+        data-tooltip-conf={this.props.dataTooltipConf}
+      >
         {this.props.canCreateNewOptions ?
           <Creatable
             ref={(element) => { if (element !== null) refSelect = element.select; }}
