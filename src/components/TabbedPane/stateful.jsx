@@ -31,7 +31,7 @@ class TabbedPane extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: get(props.sections, '[0].label'),
+      selectedTab: get(props, 'value') || get(props.sections, '[0].label'),
     };
     this.setSelectedTab = this.setSelectedTab.bind(this);
   }
@@ -40,6 +40,11 @@ class TabbedPane extends Component {
     if (this.props.sections.length !== nextProps.sections.length) {
       this.setState({
         selectedTab: get(nextProps.sections, '[0].label'),
+      });
+    }
+    if (this.props.value !== nextProps.value) {
+      this.setState({
+        selectedTab: nextProps.value,
       });
     }
   }
@@ -61,6 +66,7 @@ class TabbedPane extends Component {
       this.props.sections.filter(item => item.label === selectedTab),
       '[0].content'
     );
+    const onChange = this.props.onChange;
 
     return (
       <div {...classes()}>
@@ -69,7 +75,12 @@ class TabbedPane extends Component {
           mods={['big', 'grey', 'no-border']}
           options={tabsOptions}
           value={selectedTab}
-          onChange={this.setSelectedTab}
+          onChange={(name) => {
+            if (onChange) {
+              onChange(name);
+            }
+            this.setSelectedTab(name);
+          }}
         />
         <div {...classes('content', this.props.modsContent)}>
           {content}

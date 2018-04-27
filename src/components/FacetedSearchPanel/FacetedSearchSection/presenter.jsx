@@ -48,7 +48,6 @@ class CustomAccordionItem extends AccordionItem {
   onTransitionEnd() {
     this.setState({
       overflow: this.props.expanded && this.props.isClosable ? 'auto' : 'hidden',
-      maxHeight: null,
     });
   }
 
@@ -118,7 +117,8 @@ class CustomAccordionItem extends AccordionItem {
           className={this.props.bodyClassName}
           overflow={this.state.overflow}
           ref="body"
-          uuid={this.uuid}>
+          uuid={this.uuid}
+        >
           {type === 'INTEGER' &&
             <Field
               component={Fieldset}
@@ -152,6 +152,23 @@ class CustomAccordionItem extends AccordionItem {
             />
             : null
           }
+          {(type === 'STRING' && Array.isArray(options)) ?
+            <Field
+              component={Fieldset}
+              name={name}
+              InputComponent={
+                {
+                  component: FormCheckboxListFilterable,
+                  props: {
+                    options,
+                    emptyOptionsDisabled,
+                    hasFilter: this.state.hasFilter,
+                  }
+                }
+              }
+            />
+            : null
+          }
           {type === 'TOGGLE' &&
             <Field
               component={Fieldset}
@@ -175,6 +192,7 @@ class CustomAccordionItem extends AccordionItem {
 
 function FacetedSearchSection(props) {
   const {
+    className,
     label,
     facetCount,
     max, // for slider
@@ -242,6 +260,7 @@ function FacetedSearchSection(props) {
         hasTitle={hasTitle}
         isMulti={isMulti}
         isClosable={isClosable}
+        bodyClassName={className}
       />
     </Accordion>
   );
