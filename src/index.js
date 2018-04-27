@@ -23,6 +23,7 @@
 import Autocomplete from 'components/Autocomplete';
 import Avatar from 'components/Avatar';
 import BadgedIcon from 'components/BadgedIcon';
+import Breadcrumbs from 'components/Breadcrumbs';
 import Button from 'components/Button';
 import Checkbox from 'components/Checkbox';
 import Datepicker from 'components/Datepicker';
@@ -85,6 +86,7 @@ export {
   Avatar,
   BadgedIcon,
   Button,
+  Breadcrumbs,
   Checkbox,
   Datepicker,
   ExpandableText,

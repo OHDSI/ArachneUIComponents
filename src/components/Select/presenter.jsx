@@ -117,6 +117,8 @@ function Select(props) {
     onChange,
     options,
     placeholder,
+    unselectable = true,
+    required,
   } = props;
   let {
     mods,
@@ -183,7 +185,7 @@ function Select(props) {
       <div {...classes('control')} onMouseDown={(e) => expanded ? onBlur(getVal(value)) : onFocus()}>
         <SelectControl
           mods={selectControlMods}
-          placeholder={placeholder}
+          placeholder={`${placeholder}${required ? '*' : ''}`}
           labels={label}
           expanded={expanded}
         />
@@ -196,7 +198,7 @@ function Select(props) {
             selected={selected}
             onSelect={(selectedValue) => {
               let nextValue = selectedValue;
-              if (!isMulti && selected) {
+              if (!isMulti && selected && unselectable) {
                 nextValue = null;
               }
               onChange(getVal(nextValue));

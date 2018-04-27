@@ -154,6 +154,9 @@
 	&--report {
 		background-image: url('/img/icons/documents/chart.png');
 	}
+	&--home {
+		background-image: url('/img/icons/documents/home.png');
+	}
 }
 
 @mixin user-select-none {
@@ -283,6 +286,22 @@
 			&form {
 				&__group {
 					margin-bottom: 5px;
+				}
+				&__actions {
+					margin-top: 10px;
+				}
+				&__cancel {
+					margin-top: 7px;
+				}
+			}
+		}
+	}
+
+	&--no-spacing {
+		.#{$namespace} {
+			&form {
+				&__group {
+					margin-bottom: 0;
 				}
 				&__actions {
 					margin-top: 10px;

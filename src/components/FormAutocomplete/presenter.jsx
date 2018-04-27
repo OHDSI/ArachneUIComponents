@@ -38,6 +38,11 @@ function FormAutocomplete(props) {
     promptTextCreator,
     onNewOptionClick,
     optionRenderer,
+    filterOptions,
+    disabled,
+    wrapperClassName,
+    ariaLabel,
+    dataTooltipConf,
     // redux-form props
     input,
     meta,
@@ -55,6 +60,11 @@ function FormAutocomplete(props) {
       promptTextCreator={promptTextCreator}
       onNewOptionClick={onNewOptionClick}
       optionRenderer={optionRenderer}
+      filterOptions={filterOptions}
+      disabled={disabled}
+      wrapperClassName={wrapperClassName}
+      ariaLabel={ariaLabel}
+      dataTooltipConf={dataTooltipConf}
       {...input}
     />
   );
@@ -73,6 +83,11 @@ FormAutocomplete.propTypes = {
   promptTextCreator: PropTypes.func,
   onNewOptionClick: PropTypes.func,
   optionRenderer: PropTypes.func,
+  filterOptions: PropTypes.func,
+  disabled: PropTypes.bool,
+  wrapperClassName: PropTypes.string,
+  ariaLabel: PropTypes.string,
+  dataTooltipConf: PropTypes.string,
 }
 
 export default FormAutocomplete;
