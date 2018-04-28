@@ -118,6 +118,7 @@ function Select(props) {
     options,
     placeholder,
     unselectable = true,
+    required,
   } = props;
   let {
     mods,
@@ -184,7 +185,7 @@ function Select(props) {
       <div {...classes('control')} onMouseDown={(e) => expanded ? onBlur(getVal(value)) : onFocus()}>
         <SelectControl
           mods={selectControlMods}
-          placeholder={placeholder}
+          placeholder={`${placeholder}${required ? '*' : ''}`}
           labels={label}
           expanded={expanded}
         />
