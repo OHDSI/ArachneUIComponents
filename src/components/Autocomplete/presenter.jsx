@@ -67,8 +67,8 @@ class Autocomplete extends Component {
             ref={(element) => { if (element !== null) refSelect = element.select; }}
             {...classes('select')}
             simpleValue
-            {...this.props}
             {...commonSettings}
+            {...this.props}
             onNewOptionClick={(opt) => {
               this.props.onNewOptionClick(opt).then((val) => {
                 refSelect.blurInput();
@@ -82,8 +82,8 @@ class Autocomplete extends Component {
           <Select
             {...classes('select')}            
             simpleValue
-            {...this.props}
             {...commonSettings}
+            {...this.props}
             ref={this.props.reference}
             filterOptions={this.props.filterOptions}
           />
