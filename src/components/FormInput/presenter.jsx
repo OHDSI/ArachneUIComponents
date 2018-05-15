@@ -36,12 +36,13 @@ function FormInput(props) {
     /* redux-form props */
     input,
     meta,
+    disabled,
   } = props;
 
   return (
     <input
       {...classes({ modifiers: mods, extra: className })}
-      disabled={meta.submitting}
+      disabled={meta.submitting || disabled}
       type={type}
       placeholder={placeholder + (required ? '*' : '')}
       {...input}
@@ -57,6 +58,7 @@ FormInput.propTypes = {
   type: PropTypes.string.isRequired,
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default FormInput;
