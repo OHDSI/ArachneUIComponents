@@ -43,6 +43,8 @@ function FormAutocomplete(props) {
     wrapperClassName,
     ariaLabel,
     dataTooltipConf,
+    onBlurResetsInput = false,
+    onSelectResetsInput = false,
     // redux-form props
     input,
     meta,
@@ -65,6 +67,8 @@ function FormAutocomplete(props) {
       wrapperClassName={wrapperClassName}
       ariaLabel={ariaLabel}
       dataTooltipConf={dataTooltipConf}
+      onBlurResetsInput={onBlurResetsInput}
+      onSelectResetsInput={onSelectResetsInput}
       {...input}
     />
   );
@@ -88,6 +92,8 @@ FormAutocomplete.propTypes = {
   wrapperClassName: PropTypes.string,
   ariaLabel: PropTypes.string,
   dataTooltipConf: PropTypes.string,
+  onSelectResetsInput: PropTypes.bool,
+  onBlurResetsInput: PropTypes.bool,
 }
 
 export default FormAutocomplete;
