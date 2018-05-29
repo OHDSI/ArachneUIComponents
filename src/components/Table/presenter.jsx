@@ -24,7 +24,6 @@ import React from 'react';
 import BEMHelper from 'services/BemHelper';
 import get from 'lodash/get';
 import flatten from 'lodash/flatten';
-import Button from 'components/Button';
 
 require('./style.scss');
 
