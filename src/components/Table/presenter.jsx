@@ -62,8 +62,12 @@ function TableHeaderCell({ className, label, sorting }) {
       {...classes({ modifiers: { sortable: !!sorting }, extra: className })}
       onClick={sorting ? sorting.setSorting : null}
     >
-      <span {...classes('label')}>{label}</span>
-      {sortIco}
+      {
+        typeof label === 'string' ?  
+          [<span {...classes('label')}>{label}</span>, sortIco] 
+           :
+          label
+      }
     </th>
   );
 }
