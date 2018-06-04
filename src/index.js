@@ -74,6 +74,7 @@ import Toggle from 'components/Toggle';
 import FormToggle from 'components/FormToggle';
 import Toolbar from 'components/Toolbar';
 import FormCheckboxListFilterable from 'components/FormCheckboxListFilterable';
+import FormRadioList from 'components/FormRadioList';
 
 const ModalUtils = {
   connect: modalConnect,
@@ -101,6 +102,7 @@ export {
   FormExpansible,
   FormFileInput,
   FormInput,
+  FormRadioList,
   FormSelect,
   FormSlider,
   FormTabs,
