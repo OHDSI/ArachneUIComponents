@@ -36,6 +36,7 @@ import FormAutocomplete from 'components/FormAutocomplete';
 import FormCheckbox from 'components/FormCheckbox';
 import FormCheckboxList from 'components/FormCheckboxList';
 import FormDatepicker from 'components/FormDatepicker';
+import FormError from 'components/FormError';
 import FormExpansible from 'components/FormExpansible';
 import FormFileInput from 'components/FormFileInput';
 import FormInput from 'components/FormInput';
@@ -98,6 +99,7 @@ export {
   FormCheckbox,
   FormCheckboxList,
   FormDatepicker,
+  FormError,
   FormExpansible,
   FormFileInput,
   FormInput,

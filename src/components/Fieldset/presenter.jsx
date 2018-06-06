@@ -22,7 +22,7 @@
 
 import React, { PropTypes } from 'react';
 import BEMHelper from 'services/BemHelper';
-import FormError from './components/FormError';
+import FormError from 'components/FormError';
 
 require('./style.scss');
 
