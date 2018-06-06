@@ -1,6 +1,6 @@
 /*
  *
- * Copyright 2017 Observational Health Data Sciences and Informatics
+ * Copyright 2018 Observational Health Data Sciences and Informatics
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -75,6 +75,7 @@ import Toggle from 'components/Toggle';
 import FormToggle from 'components/FormToggle';
 import Toolbar from 'components/Toolbar';
 import FormCheckboxListFilterable from 'components/FormCheckboxListFilterable';
+import FormRadioList from 'components/FormRadioList';
 
 const ModalUtils = {
   connect: modalConnect,
@@ -103,6 +104,7 @@ export {
   FormExpansible,
   FormFileInput,
   FormInput,
+  FormRadioList,
   FormSelect,
   FormSlider,
   FormTabs,
