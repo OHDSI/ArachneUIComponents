@@ -105,6 +105,8 @@ function Table(props) {
                   child,
                   {
                     value: (child.props.format || emptyFormatter)(get(entity, child.props.field)),
+                    index: key,
+                    field: child.props.field,
                     ...(child.props.props ? child.props.props(entity) : {}),
                   }
                 )}
