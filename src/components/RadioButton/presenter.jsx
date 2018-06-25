@@ -22,7 +22,7 @@
 
 import React, { PropTypes } from 'react';
 import BEMHelper from 'services/BemHelper';
-import { toString } from 'services/Utils';
+import toString from 'lodash/toString';
 
 require('./style.scss');
 
