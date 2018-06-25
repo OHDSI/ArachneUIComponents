@@ -64,16 +64,7 @@ function canUseDom() {
   return (typeof window !== 'undefined' && typeof document !== 'undefined' && document.documentElement);
 }
 
-function toString(v) {
-  try {
-    return v.toString();
-  } catch (er) {
-    return '';
-  }
-}
-
 export default {
   numberFormatter,
   canUseDom,
-  toString,
 };
