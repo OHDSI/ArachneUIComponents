@@ -27,6 +27,7 @@ require('./style.scss');
 
 function RadioButton({ className, isChecked, onChange, name, label, isDisabled, children, value }) {
   const classes = new BEMHelper('radio-button');
+  const val = value === null ? value : value.toString();
 
   return (
     <label {...classes({ modifiers: { checked: isChecked, disabled: isDisabled }, extra: className })}>
@@ -37,7 +38,7 @@ function RadioButton({ className, isChecked, onChange, name, label, isDisabled, 
         type="checkbox"
         checked={isChecked}
         disabled={isDisabled}
-        value={value.toString()}
+        value={val}
       />
       <span {...classes({ element: 'box', modifiers: { disabled: isDisabled } })}>
         <i {...classes({ element: 'check', modifiers: { disabled: isDisabled } })}></i>
