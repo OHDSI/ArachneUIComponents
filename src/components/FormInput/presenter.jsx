@@ -1,6 +1,6 @@
 /*
  *
- * Copyright 2017 Observational Health Data Sciences and Informatics
+ * Copyright 2018 Observational Health Data Sciences and Informatics
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -36,12 +36,13 @@ function FormInput(props) {
     /* redux-form props */
     input,
     meta,
+    disabled,
   } = props;
 
   return (
     <input
       {...classes({ modifiers: mods, extra: className })}
-      disabled={meta.submitting}
+      disabled={meta.submitting || disabled}
       type={type}
       placeholder={placeholder + (required ? '*' : '')}
       {...input}
@@ -57,6 +58,7 @@ FormInput.propTypes = {
   type: PropTypes.string.isRequired,
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default FormInput;
