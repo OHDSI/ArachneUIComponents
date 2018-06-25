@@ -23,7 +23,7 @@
 import React, { PropTypes } from 'react';
 import Checkbox from 'components/Checkbox';
 import BEMHelper from 'services/BemHelper';
-import { toString } from 'services/Utils';
+import toString from 'lodash/toString';
 
 require('./style.scss');
 
