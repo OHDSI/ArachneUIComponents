@@ -37,7 +37,7 @@ function RadioButton({ className, isChecked, onChange, name, label, isDisabled, 
         type="checkbox"
         checked={isChecked}
         disabled={isDisabled}
-        value={value}
+        value={value.toString()}
       />
       <span {...classes({ element: 'box', modifiers: { disabled: isDisabled } })}>
         <i {...classes({ element: 'check', modifiers: { disabled: isDisabled } })}></i>
