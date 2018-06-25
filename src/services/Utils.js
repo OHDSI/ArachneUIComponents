@@ -68,7 +68,7 @@ function toString(v) {
   try {
     return v.toString();
   } catch (er) {
-    return v;
+    return '';
   }
 }
 
