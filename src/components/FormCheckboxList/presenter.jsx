@@ -67,7 +67,7 @@ function FormCheckboxList(props) {
             }
           }
           label={option.label}
-          name={`${input.name}[${option.value}]`}
+          name={`${input.name}[${option.value.toString()}]`}
         />
       )}
     </div>
