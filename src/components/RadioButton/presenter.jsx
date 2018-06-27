@@ -22,7 +22,6 @@
 
 import React, { PropTypes } from 'react';
 import BEMHelper from 'services/BemHelper';
-import toString from 'lodash/toString';
 
 require('./style.scss');
 
@@ -38,7 +37,7 @@ function RadioButton({ className, isChecked, onChange, name, label, isDisabled, 
         type="checkbox"
         checked={isChecked}
         disabled={isDisabled}
-        value={toString(value)}
+        value={value}
       />
       <span {...classes({ element: 'box', modifiers: { disabled: isDisabled } })}>
         <i {...classes({ element: 'check', modifiers: { disabled: isDisabled } })}></i>

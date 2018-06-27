@@ -23,7 +23,6 @@
 import React, { PropTypes } from 'react';
 import Checkbox from 'components/Checkbox';
 import BEMHelper from 'services/BemHelper';
-import toString from 'lodash/toString';
 
 require('./style.scss');
 
@@ -68,7 +67,7 @@ function FormCheckboxList(props) {
             }
           }
           label={option.label}
-          name={`${input.name}[${toString(option.value)}]`}
+          name={`${input.name}[${option.value}]`}
         />
       )}
     </div>
