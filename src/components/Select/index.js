@@ -21,5 +21,13 @@
  */
 
 import Select from './stateful';
+import {
+    defaultFilter,
+    clearOnEmptyOptionFilter,
+} from './presenter';
 
 export default Select;
+export {
+    defaultFilter,
+    clearOnEmptyOptionFilter,
+};

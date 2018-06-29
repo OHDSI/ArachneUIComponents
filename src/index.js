@@ -63,7 +63,13 @@ import Pagination from 'components/Pagination';
 import Panel from 'components/Panel';
 import PanelEditable from 'components/PanelEditable';
 import RadioButton from 'components/RadioButton';
+
 import Select from 'components/Select/stateful';
+import {
+  defaultFilter as selectDefaulFilter,
+  clearOnEmptyOptionFilter as selectClearOnEmptyOptionFilter,
+} from './components/Select';
+
 import Sidebar from 'components/Sidebar';
 import TabbedPane from 'components/TabbedPane';
 import Table from 'components/Table';
@@ -81,6 +87,11 @@ const ModalUtils = {
   connect: modalConnect,
   actions: modalActions,
   reducer: modalReducer,
+};
+
+const SelectFilters = {
+  defaultFilter: selectDefaulFilter,
+  clearOnEmptyOptionFilter: selectClearOnEmptyOptionFilter,
 };
 
 export {
@@ -121,6 +132,7 @@ export {
   PanelEditable,
   RadioButton,
   Select,
+  SelectFilters,
   Sidebar,
   TabbedPane,
   Table,
