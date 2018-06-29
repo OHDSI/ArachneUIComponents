@@ -1,6 +1,6 @@
 {
   "name": "arachne-ui-components",
-  "version": "1.13.31",
+  "version": "1.13.32",
   "licenses": [
     {
       "type": "Apache-2.0",
@@ -25,7 +25,8 @@
     "webpack.config"
   ],
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "publish": "npm i && npm run build && npm publish"
   },
   "peerDependencies": {
     "react": "*",
