@@ -34,7 +34,7 @@ require('./style.scss');
  * @param  {Boolean} isMulti
  * @return {any}
  */
-function getSelectValue(currentValue, newSelected, isMulti) {
+function getSelectValue(currentValue, newSelected, isMulti, valuesFilter) {
   let value;
   let index;
 
@@ -46,10 +46,10 @@ function getSelectValue(currentValue, newSelected, isMulti) {
     } else {
       value.splice(index, 1);
     }
-    value = value.filter(el => el);
   } else {
     value = newSelected instanceof Array ? newSelected[0] : newSelected;
   }
+  value = valuesFilter(currentValue, value);
   return value;
 }
 
@@ -106,6 +106,27 @@ function getPrevOption(options, index) {
   return options[prevIndex].value;
 }
 
+function defaultFilter(oldValue, newValue) {
+  return Array.isArray(newValue) ? newValue.filter(el => el) : newValue;
+}
+
+function clearOnEmptyOptionFilter(oldValue, newValue) {
+  const emptyVal = '';
+  if (Array.isArray(newValue)) {
+    if (Array.isArray(oldValue) && oldValue.includes(emptyVal)) {
+      // 'Any' option had been previously selected, then just ignore it
+      newValue = newValue.filter(value => value !== emptyVal);
+    } else if (newValue.includes(emptyVal)) {
+      // We've just selected it, cancel all other selected options
+      newValue = emptyVal;
+    }
+    if (newValue.length === 0) {
+        newValue = emptyVal;
+    }
+  }
+  return newValue;
+}
+
 function Select(props) {
   const {
     className,
@@ -119,6 +140,7 @@ function Select(props) {
     placeholder,
     unselectable = true,
     required,
+    valuesFilter = defaultFilter
   } = props;
   let {
     mods,
@@ -144,7 +166,7 @@ function Select(props) {
     return isOptionSelected;
   });
   const label = selectedOptions.map(option => option.label);
-  const getVal = newSelected => getSelectValue(value, newSelected, isMulti);
+  const getVal = newSelected => getSelectValue(value, newSelected, isMulti, valuesFilter);
 
   return (
     <div
@@ -213,3 +235,7 @@ function Select(props) {
 }
 
 export default Select;
+export {
+    defaultFilter,
+    clearOnEmptyOptionFilter,
+};
