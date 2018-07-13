@@ -141,7 +141,7 @@ class CustomAccordionItem extends AccordionItem {
               name={name}
               InputComponent={
                 {
-                  component: isMulti ? FormCheckboxListFilterable : FormRadioList,
+                  component: type === 'ENUM_MULTI' ? FormCheckboxListFilterable : FormRadioList,
                   props: {
                     options,
                     emptyOptionsDisabled,
