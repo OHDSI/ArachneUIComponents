@@ -44,6 +44,10 @@ function Pagination(props) {
   let endPage = 5;
   const size = pages >= 10000 ? 3 : 5;
 
+  if (currentPage > pages) {
+    currentPage = pages;
+  }
+
   if (isFromZero) {
     currentPage = currentPage + 1;
   }
