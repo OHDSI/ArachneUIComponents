@@ -1,6 +1,6 @@
 {
   "name": "arachne-ui-components",
-  "version": "1.12.29",
+  "version": "1.13.35",
   "licenses": [
     {
       "type": "Apache-2.0",
@@ -83,7 +83,7 @@
     "jsdom": "^9.8.0",
     "mocha": "^3.1.2",
     "moment": "^2.21.0",
-    "node-sass": "^3.10.1",
+    "node-sass": "4.9.0",
     "path": "^0.12.7",
     "proxy-middleware": "^0.15.0",
     "react-addons-test-utils": "^15.3.2",
