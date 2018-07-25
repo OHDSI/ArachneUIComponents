@@ -53,6 +53,7 @@
       width: 15px;
       display: flex;
       align-items: center;
+      flex-shrink: 0;
 
       &--disabled {
         border-color: lighten($grey-placeholder, 25%);
