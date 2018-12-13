@@ -140,7 +140,8 @@ function Select(props) {
     placeholder,
     unselectable = true,
     required,
-    valuesFilter = defaultFilter
+    valuesFilter = defaultFilter,
+    tabindex,
   } = props;
   let {
     mods,
@@ -200,7 +201,7 @@ function Select(props) {
             break;
         }
       }}
-      tabIndex={isMulti ? null : '0'}
+      tabIndex={isMulti ? null : (tabindex ? tabindex : '0')}
     >
       <div {...classes('outer')} onClick={() => onBlur(getVal(value))} />
       <input {...classes('input')} type="hidden" value={getVal(value)} />

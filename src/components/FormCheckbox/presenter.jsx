@@ -32,13 +32,14 @@ function FormCheckbox(props) {
     className,
     mods,
     options,
+    tabindex,
     /* redux-form props */
     input,
     meta,
   } = props;
 
   return (
-    <div {...classes()}>
+    <div {...classes()} tabIndex={tabindex}>
       <Checkbox
         {...classes({ extra: className, mods: mods })}
         {...input}
@@ -56,6 +57,7 @@ FormCheckbox.propTypes = {
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
   label: PropTypes.string,
+  tabindex: PropTypes.number,
 }
 
 export default FormCheckbox;
