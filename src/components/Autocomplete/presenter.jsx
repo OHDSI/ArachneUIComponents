@@ -61,6 +61,7 @@ class Autocomplete extends Component {
         })}
         aria-label={this.props.ariaLabel}
         data-tooltip-conf={this.props.dataTooltipConf}
+        tabIndex={this.props.tabindex}
       >
         {this.props.canCreateNewOptions ?
           <Creatable
@@ -111,6 +112,7 @@ Autocomplete.propTypes = {
   promptTextCreator: PropTypes.func,
   onNewOptionClick: PropTypes.func,
   filterOptions: PropTypes.func,
+  tabindex: PropTypes.number,
 };
 
 export default Autocomplete;
