@@ -45,6 +45,7 @@ function FormAutocomplete(props) {
     dataTooltipConf,
     onBlurResetsInput = false,
     onSelectResetsInput = false,
+    tabindex,
     // redux-form props
     input,
     meta,
@@ -69,6 +70,7 @@ function FormAutocomplete(props) {
       dataTooltipConf={dataTooltipConf}
       onBlurResetsInput={onBlurResetsInput}
       onSelectResetsInput={onSelectResetsInput}
+      tabindex={tabindex}
       {...input}
     />
   );
