@@ -40,6 +40,7 @@ function FileInput(props) {
 
     value,
     onChange,
+    tabindex,
   } = props;
 
   let dropzone;
@@ -58,7 +59,7 @@ function FileInput(props) {
   const label = values.length > 1 ? `Multiple files (${values.length})` : value;
 
   return (
-    <div {...classes()}>
+    <div {...classes()} tabIndex={tabindex}>
       <div {...classes('input-wrapper')}>
         <input
           {...classes('input')}

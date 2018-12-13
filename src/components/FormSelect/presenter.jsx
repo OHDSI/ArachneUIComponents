@@ -37,6 +37,7 @@ function FormSelect(props) {
     placeholder,
     unselectable = true,
     required,
+    tabindex,
     /* redux-form props */
     input,
     meta,
@@ -57,6 +58,7 @@ function FormSelect(props) {
       onChange={val => input.onChange(val)}
       unselectable={unselectable}
       required={required}
+      tabindex={tabindex}
     />
   );
 }
@@ -71,6 +73,7 @@ FormSelect.propTypes = {
   options: PropTypes.array.isRequired,
   placeholder: PropTypes.string,
   unselectable: PropTypes.bool,
+  tabindex: PropTypes.number,
 }
 
 export default FormSelect;

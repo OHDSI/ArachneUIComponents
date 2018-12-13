@@ -41,6 +41,7 @@ function FormCheckboxList(props) {
     className,
     options,
     emptyOptionsDisabled = true,
+    tabindex,
     /* redux-form props */
     input,
     meta,
@@ -53,7 +54,7 @@ function FormCheckboxList(props) {
   valueList = (valueList).slice().map(item => item.toString());
 
   return (
-    <div {...classes({ extra: className })}>
+    <div {...classes({ extra: className })} tabIndex={tabindex}>
       {options.map((option, key) =>
         <Checkbox
           {...classes('item', { inactive: emptyOptionsDisabled && option.facetCount === 0 })}

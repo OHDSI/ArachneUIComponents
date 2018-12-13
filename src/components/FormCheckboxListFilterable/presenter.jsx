@@ -40,6 +40,7 @@ function FormCheckboxListFilterable(props) {
     listHeight,
     hasFilter,
     searchField = 'value',
+    tabindex,
   } = props;
   const fuseSearch = new Fuse(options, {
     shouldSort: true,
@@ -55,7 +56,7 @@ function FormCheckboxListFilterable(props) {
   const filteredOptions = filterText ? fuseSearch.search(filterText) : options;
 
   return (
-    <div {...classes()}>
+    <div {...classes()} tabIndex={tabindex}>
       {hasFilter === true
         ? <div>
             <input {...classes('filter-input')} onChange={(evt) => filter(evt.target.value)} placeholder='filter'/>
@@ -92,6 +93,7 @@ FormCheckboxListFilterable.propTypes = {
   listHeight: PropTypes.number,
   hasFilter: PropTypes.bool,
   searchField: PropTypes.string,
+  tabindex: PropTypes.number,
 }
 
 export default FormCheckboxListFilterable;
