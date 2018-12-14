@@ -23,6 +23,7 @@
 import React, { PropTypes } from 'react';
 import Link from 'components/Link/index';
 import BEMHelper from 'services/BemHelper';
+import moment from 'moment';
 
 require('./style.scss');
 
@@ -63,7 +64,7 @@ function Sidebar({ className, showAboutInfo, tabList, colorScheme }) {
           info_outline
         </i>
         <span {...classes('copyright-label')}>
-          © 2015-2018
+          © 2015-{moment().format('YYYY')}<br />
           Odysseus Data Services, Inc.
         </span>
       </div>
