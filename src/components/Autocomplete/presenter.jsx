@@ -38,6 +38,8 @@ class Autocomplete extends Component {
     let refSelect;
     const {
       useSearchIcon = true,
+      placeholder,
+      required,
     } = this.props;
 
     const commonSettings = {
@@ -86,6 +88,7 @@ class Autocomplete extends Component {
             {...commonSettings}
             {...this.props}
             ref={this.props.reference}
+            placeholder={placeholder + (required ? '*' : '')}
             filterOptions={this.props.filterOptions}
           />
         }
@@ -113,6 +116,8 @@ Autocomplete.propTypes = {
   onNewOptionClick: PropTypes.func,
   filterOptions: PropTypes.func,
   tabindex: PropTypes.number,
+  required: PropTypes.bool,
+  placeholder: PropTypes.string,
 };
 
 export default Autocomplete;
