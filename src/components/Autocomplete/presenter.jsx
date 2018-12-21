@@ -39,7 +39,7 @@ class Autocomplete extends Component {
     const {
       useSearchIcon = true,
       placeholder,
-      required,
+      isRequired,
     } = this.props;
 
     const commonSettings = {
@@ -88,7 +88,7 @@ class Autocomplete extends Component {
             {...commonSettings}
             {...this.props}
             ref={this.props.reference}
-            placeholder={placeholder + (required ? '*' : '')}
+            placeholder={placeholder + (isRequired ? '*' : '')}
             filterOptions={this.props.filterOptions}
           />
         }
@@ -116,7 +116,7 @@ Autocomplete.propTypes = {
   onNewOptionClick: PropTypes.func,
   filterOptions: PropTypes.func,
   tabindex: PropTypes.number,
-  required: PropTypes.bool,
+  isRequired: PropTypes.bool,
   placeholder: PropTypes.string,
 };
 
