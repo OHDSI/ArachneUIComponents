@@ -72,7 +72,7 @@ function FormAutocomplete(props) {
       onBlurResetsInput={onBlurResetsInput}
       onSelectResetsInput={onSelectResetsInput}
       tabindex={tabindex}
-      required={required}
+      isRequired={required}
       {...input}
     />
   );
