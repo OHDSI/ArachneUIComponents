@@ -49,6 +49,7 @@ function FormAutocomplete(props) {
     // redux-form props
     input,
     meta,
+    required,
   } = props;
 
   return (
@@ -71,6 +72,7 @@ function FormAutocomplete(props) {
       onBlurResetsInput={onBlurResetsInput}
       onSelectResetsInput={onSelectResetsInput}
       tabindex={tabindex}
+      isRequired={required}
       {...input}
     />
   );
@@ -96,6 +98,7 @@ FormAutocomplete.propTypes = {
   dataTooltipConf: PropTypes.string,
   onSelectResetsInput: PropTypes.bool,
   onBlurResetsInput: PropTypes.bool,
+  required: PropTypes.bool,
 }
 
 export default FormAutocomplete;
