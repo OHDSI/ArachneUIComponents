@@ -1,6 +1,6 @@
 /*
  *
- * Copyright 2017 Observational Health Data Sciences and Informatics
+ * Copyright 2018 Odysseus Data Services, inc.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -32,13 +32,14 @@ function FormCheckbox(props) {
     className,
     mods,
     options,
+    tabindex,
     /* redux-form props */
     input,
     meta,
   } = props;
 
   return (
-    <div {...classes()}>
+    <div {...classes()} tabIndex={tabindex}>
       <Checkbox
         {...classes({ extra: className, mods: mods })}
         {...input}
@@ -56,6 +57,7 @@ FormCheckbox.propTypes = {
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
   label: PropTypes.string,
+  tabindex: PropTypes.number,
 }
 
 export default FormCheckbox;

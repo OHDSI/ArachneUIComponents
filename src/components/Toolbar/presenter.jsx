@@ -1,6 +1,6 @@
 /*
  *
- * Copyright 2017 Observational Health Data Sciences and Informatics
+ * Copyright 2018 Odysseus Data Services, inc.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,7 +27,7 @@ import BEMHelper from 'services/BemHelper';
 
 require('./style.scss');
 
-function Toolbar({ caption, breadcrumbList, backUrl, onEdit, children, mods, isEditable = false }) {
+function Toolbar({ caption, breadcrumbList, backUrl, onEdit, children, mods, isEditable = false, icon }) {
   const classes = new BEMHelper('toolbar');
 
   children = children instanceof Array ? children : [children];
@@ -54,6 +54,7 @@ function Toolbar({ caption, breadcrumbList, backUrl, onEdit, children, mods, isE
           </i>
         </Link>
       }
+      {icon}
       <div {...classes('content')}>
         <div {...classes('header-wrapper')}>
           <h1 {...classes('header')}>
