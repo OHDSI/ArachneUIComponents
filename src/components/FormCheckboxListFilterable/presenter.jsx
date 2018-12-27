@@ -1,6 +1,6 @@
 /*
  *
- * Copyright 2017 Observational Health Data Sciences and Informatics
+ * Copyright 2018 Odysseus Data Services, inc.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -40,6 +40,7 @@ function FormCheckboxListFilterable(props) {
     listHeight,
     hasFilter,
     searchField = 'value',
+    tabindex,
   } = props;
   const fuseSearch = new Fuse(options, {
     shouldSort: true,
@@ -55,7 +56,7 @@ function FormCheckboxListFilterable(props) {
   const filteredOptions = filterText ? fuseSearch.search(filterText) : options;
 
   return (
-    <div {...classes()}>
+    <div {...classes()} tabIndex={tabindex}>
       {hasFilter === true
         ? <div>
             <input {...classes('filter-input')} onChange={(evt) => filter(evt.target.value)} placeholder='filter'/>
@@ -92,6 +93,7 @@ FormCheckboxListFilterable.propTypes = {
   listHeight: PropTypes.number,
   hasFilter: PropTypes.bool,
   searchField: PropTypes.string,
+  tabindex: PropTypes.number,
 }
 
 export default FormCheckboxListFilterable;

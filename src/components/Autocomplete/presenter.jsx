@@ -1,6 +1,6 @@
 /*
  *
- * Copyright 2017 Observational Health Data Sciences and Informatics
+ * Copyright 2018 Odysseus Data Services, inc.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -38,6 +38,8 @@ class Autocomplete extends Component {
     let refSelect;
     const {
       useSearchIcon = true,
+      placeholder,
+      isRequired,
     } = this.props;
 
     const commonSettings = {
@@ -61,6 +63,7 @@ class Autocomplete extends Component {
         })}
         aria-label={this.props.ariaLabel}
         data-tooltip-conf={this.props.dataTooltipConf}
+        tabIndex={this.props.tabindex}
       >
         {this.props.canCreateNewOptions ?
           <Creatable
@@ -85,6 +88,7 @@ class Autocomplete extends Component {
             {...commonSettings}
             {...this.props}
             ref={this.props.reference}
+            placeholder={placeholder + (isRequired ? '*' : '')}
             filterOptions={this.props.filterOptions}
           />
         }
@@ -111,6 +115,9 @@ Autocomplete.propTypes = {
   promptTextCreator: PropTypes.func,
   onNewOptionClick: PropTypes.func,
   filterOptions: PropTypes.func,
+  tabindex: PropTypes.number,
+  isRequired: PropTypes.bool,
+  placeholder: PropTypes.string,
 };
 
 export default Autocomplete;
