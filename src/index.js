@@ -63,13 +63,7 @@ import Pagination from 'components/Pagination';
 import Panel from 'components/Panel';
 import PanelEditable from 'components/PanelEditable';
 import RadioButton from 'components/RadioButton';
-
 import Select from 'components/Select/stateful';
-import {
-  defaultFilter as selectDefaulFilter,
-  clearOnEmptyOptionFilter as selectClearOnEmptyOptionFilter,
-} from './components/Select';
-
 import Sidebar from 'components/Sidebar';
 import TabbedPane from 'components/TabbedPane';
 import Table from 'components/Table';
@@ -82,6 +76,11 @@ import FormToggle from 'components/FormToggle';
 import Toolbar from 'components/Toolbar';
 import FormCheckboxListFilterable from 'components/FormCheckboxListFilterable';
 import FormRadioList from 'components/FormRadioList';
+
+import {
+  defaultFilter as selectDefaulFilter,
+  clearOnEmptyOptionFilter as selectClearOnEmptyOptionFilter,
+} from './components/Select';
 
 const ModalUtils = {
   connect: modalConnect,
@@ -143,5 +142,5 @@ export {
   Toggle,
   FormToggle,
   Toolbar,
-  FormCheckboxListFilterable,  
+  FormCheckboxListFilterable,
 };
