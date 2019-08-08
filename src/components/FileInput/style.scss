@@ -25,7 +25,7 @@
 .#{$namespace} {
 
 	&file-input {
-		
+
 		&__input-wrapper {
 			display: flex;
 			width: 100%;
@@ -79,24 +79,30 @@
 		}
 
 		&__add-button {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      margin: 1rem 0;
+			display: flex;
+			align-items: center;
+			cursor: pointer;
+			margin: 1rem 0;
 		}
 
-    &__add-button-icon {
-      @include material-icon();
-      color: $green;
-      display: inline-block;
-      margin-right: 1rem;
-      font-size: 2.5rem;
-    }
+		&__add-button-icon {
+			@include material-icon();
+			color: $green;
+			display: inline-block;
+			margin-right: 1rem;
+			font-size: 2.5rem;
+		}
 
-    &__add-button-label {
-      @include title();
-      color: $grey-dark-light;
-    }
+		&__add-button-label {
+			@include title();
+			color: $grey-dark-light;
+		}
+
+		&__extensions-info {
+			margin-top: 1rem;
+			color: $red;
+			text-align: center;
+		}
 	}
 
 }
