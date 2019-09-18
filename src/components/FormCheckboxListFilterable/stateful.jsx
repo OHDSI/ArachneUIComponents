@@ -41,12 +41,20 @@ class FormCheckboxListFilterable extends Component {
       isExpanded: true,
     });
   }
-  
+
   collapse() {
     this.setState({
       isExpanded: false,
       filterText: '',
     });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!this.props.hasFilter && prevProps.hasFilter) {
+      this.setState({
+        filterText: '',
+      });
+    }
   }
 
   filter(value) {
