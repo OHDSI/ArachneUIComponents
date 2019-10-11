@@ -37,7 +37,7 @@ function FileInput(props) {
     placeholder,
     filePlaceholder,
     multiple,
-
+    accept,
     value,
     onChange,
     tabindex,
@@ -81,6 +81,7 @@ function FileInput(props) {
       </div>
       <Dropzone
         {...classes('dropzone')}
+        accept={accept.join(',')}
         ref={dz => dropzone = dz}
         multiple={multiple}
         onDrop={(val) => {
@@ -131,6 +132,9 @@ function FileInput(props) {
         }
         )}
       </ul>
+      {!!accept.length && (
+        <div {...classes('extensions-info')}>Only {accept.map(ext => `*${ext}`).join(', ')} files will be accepted.</div>
+      )}
     </div>
   );
 }
@@ -142,6 +146,7 @@ FileInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.any.isRequired,
+  accept: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default FileInput;
