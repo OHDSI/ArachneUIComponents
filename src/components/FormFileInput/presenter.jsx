@@ -29,6 +29,7 @@ function FormFileInput(props) {
   const {
     input,
     onChangeCustom,
+    accept = [],
   } = props;
 
   let onChange;
@@ -42,6 +43,7 @@ function FormFileInput(props) {
     <FileInput
       {...props}
       onChange={onChange}
+      accept={accept}
       value={
         Array.isArray(input.value)
         ? get(input.value, '[0].name', '')
@@ -54,6 +56,7 @@ function FormFileInput(props) {
 FormFileInput.propTypes = {
   input: PropTypes.object.isRequired,
   onChangeCustom: PropTypes.func,
-}
+  accept: PropTypes.arrayOf(PropTypes.string),
+};
 
 export default FormFileInput;
