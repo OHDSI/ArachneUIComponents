@@ -60,7 +60,7 @@ class TabbedPane extends Component {
 
     const selectedTab = this.state.selectedTab;
     const tabsOptions = this.props.sections.map(
-      item => ({ ...item, label: item.label, value: item.label, customLabel: item.customLabel })
+      item => ({ ...item, label: item.label, value: item.label })
     );
     const content = get(
       this.props.sections.filter(item => item.label === selectedTab),
