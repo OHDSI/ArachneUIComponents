@@ -47,7 +47,7 @@ function Tabs({ className, mods, options, value, onChange }) {
           aria-label={option.tooltip}
           data-tootik-conf={ option.tooltipConf || 'bottom' }
         >
-          {option.label}
+          {option.customLabel || option.label}
         </li>
 			)}
     </ul>
