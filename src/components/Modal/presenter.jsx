@@ -34,6 +34,7 @@ function Modal(props) {
     modal,
     title,
     onBeforeClose,
+    closeOnClickOutside = false,
   } = props;
   const {
     mods,
@@ -54,7 +55,7 @@ function Modal(props) {
 
   return (
     <div {...classes({ modifiers })}>
-      <div {...classes('backdrop')} onClick={handleClick} />
+      <div {...classes('backdrop')} onClick={closeOnClickOutside && handleClick} />
       <div
         {...classes('content-wrapper')}
         ref={modal.setContentRef}
@@ -89,6 +90,7 @@ Modal.propTypes = {
   title: PropTypes.string.isRequired,
   mods: PropTypes.any,
   onBeforeClose: PropTypes.func,
+  closeOnClickOutside: PropTypes.bool,
 };
 
 export default Modal;
