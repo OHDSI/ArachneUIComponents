@@ -34,6 +34,7 @@ function Modal(props) {
     modal,
     title,
     onBeforeClose,
+    closeOnClickOutside = false,
   } = props;
   const {
     mods,
@@ -42,16 +43,19 @@ function Modal(props) {
   const modifiers = classNames({ active: modal.isActive }, mods);
   const classes = new BEMHelper('modal');
 
+  function handleClick() {
+    if(typeof onBeforeClose === 'function') {
+      onBeforeClose() === true
+        ? modal.close()
+        : null;
+    } else {
+      modal.close();
+    }
+  }
+
   return (
-    <div {...classes({ modifiers })} onClick={() => {
-      if(typeof onBeforeClose === 'function') {
-        onBeforeClose() === true 
-          ? modal.close()
-          : null;
-      } else {
-        modal.close();
-      }
-    }}>
+    <div {...classes({ modifiers })}>
+      <div {...classes('backdrop')} onClick={closeOnClickOutside && handleClick} />
       <div
         {...classes('content-wrapper')}
         ref={modal.setContentRef}
@@ -86,6 +90,7 @@ Modal.propTypes = {
   title: PropTypes.string.isRequired,
   mods: PropTypes.any,
   onBeforeClose: PropTypes.func,
+  closeOnClickOutside: PropTypes.bool,
 };
 
 export default Modal;
