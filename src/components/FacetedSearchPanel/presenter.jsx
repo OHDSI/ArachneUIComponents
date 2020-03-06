@@ -121,7 +121,7 @@ function FacetedSearch(props) {
               Refine Search
             </div>
           }
-          {dynamicFields.map((section, key) => 
+          {dynamicFields.map((section, key) =>
             isAccordion
             ? <FacetedSearchSection
                 forceOpened={openedSectionId === key}
@@ -149,7 +149,7 @@ function FacetedSearch(props) {
             {...classes('clear')}
             mods={['cancel', 'rounded']}
             type='button'
-            label='Clear'
+            label='Clear Filters'
             onClick={doClear}
           />
         </div>
