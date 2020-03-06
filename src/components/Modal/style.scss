@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Company: Odysseus Data Services, Inc.
+ * Company                   : Odysseus Data Services, Inc.
  * Product Owner/Architecture: Gregory Klebanov
- * Authors: Pavel Grafkin, Alexander Saltykov
- * Created: March 01, 2017
+ * Authors                   : Pavel Grafkin, Alexander Saltykov
+ * Created                   : March 01, 2017
  *
  */
 
@@ -24,42 +24,44 @@
 
 .#{$namespace} {
 
-  @mixin fill-screen-fixed() {    
+  @mixin fill-screen-fixed() {
     position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    top     : 0;
+    right   : 0;
+    bottom  : 0;
+    left    : 0;
   }
 
   // Container that the modal scrolls within
   &modal {
     position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    top     : 0;
+    right   : 0;
+    bottom  : 0;
+    left    : 0;
+    overflow: hidden;
 
-    // align-items: center;
-    background: rgba(#000000, 0.7);
+    // align-items : center;
+    background     : rgba(#000000, 0.7);
     justify-content: center;
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding: 30px;
-    text-align: center;
-    z-index: $z-index-modal-overlay;
+    overflow-x     : hidden;
+    overflow-y     : auto;
+    padding        : 30px;
+    text-align     : center;
+    z-index        : $z-index-modal-overlay;
 
     &:after {
-      content: ' ';
-      display: inline-block;
-      height: 100%;
+      content       : ' ';
+      display       : inline-block;
+      height        : 100%;
       vertical-align: middle;
-      width: 0;
+      width         : 0;
     }
 
     display: none;
+
     &--active {
-      display: block;//flex;
+      display: block; //flex;
     }
 
     &--no-padding {
@@ -71,45 +73,56 @@
     }
 
     &__content-wrapper {
-      display: inline-block;
-      position: relative;
-      text-align: left;
+      display       : inline-block;
+      position      : relative;
+      text-align    : left;
       vertical-align: middle;
-      z-index: $z-index-modal-window;
-      max-width: 100%;
+      z-index       : $z-index-modal-window;
+      max-width     : 100%;
+
       &:focus {
         outline: none;
       }
     }
 
     &__close-ico {
-      position: absolute;
-      top: -9px;
-      right: -9px;
-      border: 2px solid $white;
+      position     : absolute;
+      top          : -9px;
+      right        : -9px;
+      border       : 2px solid $white;
       border-radius: 50%;
-      cursor: pointer;
+      cursor       : pointer;
+    }
+
+    &__backdrop {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      right: 0;
+      left: 0;
+      top: 0;
+      bottom: 0;
     }
 
     &__content {
       $content-padding: 15px;
 
       &-header {
-        background: $grey;
-        border-top-left-radius: $input-border-radius;
+        background             : $grey;
+        border-top-left-radius : $input-border-radius;
         border-top-right-radius: $input-border-radius;
-        font-family: $font-family-montserrat;
-        padding: $content-padding;
-        text-align: center;
-        text-transform: uppercase;
+        font-family            : $font-family-montserrat;
+        padding                : $content-padding;
+        text-align             : center;
+        text-transform         : uppercase;
       }
 
       &-body {
-        background: $white;
-        border-bottom-left-radius: $input-border-radius;
+        background                : $white;
+        border-bottom-left-radius : $input-border-radius;
         border-bottom-right-radius: $input-border-radius;
-        padding: $content-padding;
-        overflow-y: auto;
+        padding                   : $content-padding;
+        overflow-y                : auto;
       }
     }
   }
