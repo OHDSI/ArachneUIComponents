@@ -78,7 +78,7 @@
         "jsdom": "9.8.0",
         "mocha": "3.1.2",
         "moment": "2.21.0",
-        "node-sass": "4.9.0",
+        "node-sass": "4.14.1",
         "path": "0.12.7",
         "proxy-middleware": "0.15.0",
         "react-addons-test-utils": "15.3.2",

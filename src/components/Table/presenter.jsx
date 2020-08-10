@@ -20,6 +20,7 @@
  *
  */
 
+// eslint-disable-next-line import/extensions
 import React from 'react';
 import BEMHelper from 'services/BemHelper';
 import get from 'lodash/get';
@@ -46,7 +47,8 @@ const getFieldSorting = function (field, currentSorting, setSorting) {
   };
 };
 
-function TableHeaderCell({ className, label, sorting }) {
+function TableHeaderCell({ className, label, sorting, id }) {
+  console.log('local th')
   const classes = new BEMHelper('table-header-cell');
   let sortIco;
 
@@ -60,6 +62,7 @@ function TableHeaderCell({ className, label, sorting }) {
   return (
     <th
       {...classes({ modifiers: { sortable: !!sorting }, extra: className })}
+      key={id}
       onClick={sorting ? sorting.setSorting : null}
     >
       {
@@ -92,8 +95,9 @@ function Table(props) {
             onClick={onRowClick ? () => onRowClick(entity) : null}
             key={key}
           >
-            {React.Children.map(props.children, child =>
+            {React.Children.map(props.children, (child, index) =>
               <td
+                key={index}
                 {
                 ...classes({
                   element: 'cell',
@@ -132,7 +136,7 @@ function Table(props) {
     <table {...classes({ modifiers: props.mods, extra: props.className })} ref={reference}>
       <thead>
         <tr {...classes('header-row')}>
-          {React.Children.map(props.children, child =>
+          {React.Children.map(props.children, (child, index) =>
             <TableHeaderCell
               {
                 ...classes({
@@ -140,6 +144,7 @@ function Table(props) {
                   extra: child.props.className ? `${child.props.className}-th` : null,
                 })
               }
+              id={index}
               label={child.props.header}
               sorting={
                 (sorting && child.props.isSortable !== false) ? getFieldSorting(child.props.field, sorting, props.setSorting) : null
