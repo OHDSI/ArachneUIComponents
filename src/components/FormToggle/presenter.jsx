@@ -44,7 +44,7 @@ function FormToggle(props) {
 
 FormToggle.propTypes = {
   input: PropTypes.shape({
-    value: PropTypes.string,
+    value: PropTypes.bool,
     onChange: PropTypes.func,
   }),
   className: PropTypes.string,

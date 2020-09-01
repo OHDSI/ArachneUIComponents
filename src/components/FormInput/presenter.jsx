@@ -32,7 +32,7 @@ function FormInput(props) {
     mods,
     placeholder,
     required,
-    type,
+    type = 'text',
     tabindex,
     /* redux-form props */
     input,
@@ -57,7 +57,7 @@ FormInput.propTypes = {
   mods: PropTypes.any,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   input: PropTypes.object.isRequired,
   meta: PropTypes.object.isRequired,
   disabled: PropTypes.bool,
