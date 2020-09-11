@@ -20,6 +20,7 @@
  *
  */
 
+// eslint-disable-next-line import/extensions
 import React from 'react';
 import BEMHelper from 'services/BemHelper';
 import get from 'lodash/get';
@@ -46,25 +47,26 @@ const getFieldSorting = function (field, currentSorting, setSorting) {
   };
 };
 
-function TableHeaderCell({ className, label, sorting }) {
+function TableHeaderCell({ className, label, sorting, id }) {
   const classes = new BEMHelper('table-header-cell');
   let sortIco;
 
   if (label && sorting) {
     const sortingMod = sorting.direction + (sorting.active ? '-active' : '');
     sortIco = (
-      <i {...classes('sorting', sortingMod)} />
+      <i key={id + 'sorting'} {...classes('sorting', sortingMod)} />
     );
   }
 
   return (
     <th
+      key={id}
       {...classes({ modifiers: { sortable: !!sorting }, extra: className })}
       onClick={sorting ? sorting.setSorting : null}
     >
       {
         typeof label === 'string' ?  
-          [<span {...classes('label')}>{label}</span>, sortIco] 
+          [<span key={id + 'label'} {...classes('label')}>{label}</span>, sortIco] 
            :
           label
       }
@@ -90,10 +92,11 @@ function Table(props) {
           <tr
             {...classes({ element: 'row', extra: entity.tableRowClass })}
             onClick={onRowClick ? () => onRowClick(entity) : null}
-            key={key}
+            key={key + 'row'}
           >
-            {React.Children.map(props.children, child =>
+            {React.Children.map(props.children, (child, index) =>
               <td
+                key={index + 'cell'}
                 {
                 ...classes({
                   element: 'cell',
@@ -105,7 +108,7 @@ function Table(props) {
                   child,
                   {
                     value: (child.props.format || emptyFormatter)(get(entity, child.props.field)),
-                    index: key,
+                    index: index,
                     field: child.props.field,
                     ...(child.props.props ? child.props.props(entity) : {}),
                   }
@@ -132,7 +135,7 @@ function Table(props) {
     <table {...classes({ modifiers: props.mods, extra: props.className })} ref={reference}>
       <thead>
         <tr {...classes('header-row')}>
-          {React.Children.map(props.children, child =>
+          {React.Children.map(props.children, (child, index) =>
             <TableHeaderCell
               {
                 ...classes({
@@ -140,6 +143,7 @@ function Table(props) {
                   extra: child.props.className ? `${child.props.className}-th` : null,
                 })
               }
+              id={index + 'header-cell'}
               label={child.props.header}
               sorting={
                 (sorting && child.props.isSortable !== false) ? getFieldSorting(child.props.field, sorting, props.setSorting) : null

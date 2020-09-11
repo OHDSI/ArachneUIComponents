@@ -27,7 +27,7 @@ require('./style.scss');
 
 function Avatar(props) {
 	const {
-		img,
+		img = '',
 		mods,
 	} = props;
 
@@ -43,7 +43,7 @@ function Avatar(props) {
 }
 
 Avatar.propTypes = {
-  img: PropTypes.string.isRequired,
+  img: PropTypes.string,
 };
 
 export default Avatar;

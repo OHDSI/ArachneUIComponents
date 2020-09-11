@@ -25,11 +25,11 @@ import BEMHelper from 'services/BemHelper';
 
 require('./style.scss');
 
-function TableCellText({ className, mods, value }) {
+function TableCellText({ className, mods, value, index }) {
   const classes = new BEMHelper('table-cell-text');
 
   return (
-    <span {...classes({ modifiers: mods, extra: className })}>
+    <span key={index + 'table-cell-text-span'} {...classes({ modifiers: mods, extra: className })}>
       {value}
     </span>
   );
