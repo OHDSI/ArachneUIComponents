@@ -26,11 +26,11 @@ import BEMHelper from 'services/BemHelper';
 require('./style.scss');
 
 function BadgedIcon(props) {
-  const { className, count, icon, onClick } = props; // + maybe tooltip settings
+  const { className, count, icon, onClick, ...rest } = props; // + maybe tooltip settings
   const classes = new BEMHelper('badged-icon');
 
   return (
-    <div {...classes({ extra: className })} onClick={onClick} {...props}>
+    <div {...classes({ extra: className })} onClick={onClick} {...rest}>
       <i {...classes('icon')}>
         {icon}
       </i>
