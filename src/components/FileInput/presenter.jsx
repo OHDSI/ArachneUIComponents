@@ -142,7 +142,7 @@ function FileInput(props) {
 FileInput.propTypes = {
   dropzonePlaceholder: PropTypes.string,
   multiple: PropTypes.bool,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.any.isRequired,
