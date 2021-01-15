@@ -63,7 +63,7 @@ Panel.propTypes = {
   // TODO
   headerBtns: PropTypes.func,
   mods: PropTypes.any,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.any,
 }
 
 export default Panel;

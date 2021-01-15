@@ -46,6 +46,7 @@ function FormAutocomplete(props) {
     onBlurResetsInput = false,
     onSelectResetsInput = false,
     tabindex,
+    tethered = false,
     // redux-form props
     input,
     meta,
@@ -73,6 +74,7 @@ function FormAutocomplete(props) {
       onSelectResetsInput={onSelectResetsInput}
       tabindex={tabindex}
       isRequired={required}
+      tethered={tethered}
       {...input}
     />
   );
@@ -99,6 +101,7 @@ FormAutocomplete.propTypes = {
   onSelectResetsInput: PropTypes.bool,
   onBlurResetsInput: PropTypes.bool,
   required: PropTypes.bool,
+  tethered: PropTypes.bool,
 }
 
 export default FormAutocomplete;

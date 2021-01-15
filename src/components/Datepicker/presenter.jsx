@@ -57,7 +57,7 @@ Datepicker.propTypes = {
     React.PropTypes.number, // timestamp
     React.PropTypes.string, // e.g. '2016-12-28'
     React.PropTypes.instanceOf(Date),
-    React.PropTypes.instanceOf(moment)
+    React.PropTypes.object,
   ]),
 };
 

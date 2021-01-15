@@ -63,8 +63,8 @@ function SelectControl({ mods, placeholder, labels, expanded }) {
         {typeof labels[0] === 'string'
           ? labels.join(', ')
           : flatten(labels.map((el, i) => (i + 1) < labels.length
-            ? [<span {...classes('selected-option-wrapper')}>{el}</span>, <span {...classes('comma')}>,</span>]
-            : [<span {...classes('selected-option-wrapper')}>{el}</span>]))
+            ? [<span key="1" {...classes('selected-option-wrapper')}>{el}</span>, <span key="2" {...classes('comma')}>,</span>]
+            : [<span key="1" {...classes('selected-option-wrapper')}>{el}</span>]))
         }
       </span>
     );

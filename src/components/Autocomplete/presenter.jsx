@@ -23,6 +23,7 @@
 import React, { Component, PropTypes } from 'react';
 import BEMHelper from 'services/BemHelper';
 import Select, { Creatable } from 'react-select';
+import { TetheredSelect } from './TetherComponent';
 
 require('./style.scss');
 
@@ -40,6 +41,7 @@ class Autocomplete extends Component {
       useSearchIcon = true,
       placeholder,
       isRequired,
+      tethered = false,
     } = this.props;
 
     const commonSettings = {
@@ -81,17 +83,28 @@ class Autocomplete extends Component {
             promptTextCreator={this.props.promptTextCreator}
             scrollMenuIntoView={false}
           />
-          :            
-          <Select
-            {...classes('select')}            
-            simpleValue
-            {...commonSettings}
-            {...this.props}
-            ref={this.props.reference}
-            placeholder={placeholder + (isRequired ? '*' : '')}
-            filterOptions={this.props.filterOptions}
-          />
-        }
+          :
+          tethered ? (
+            <TetheredSelect
+              simpleValue
+              {...commonSettings}
+              {...this.props}
+              ref={this.props.reference}
+              placeholder={placeholder + (isRequired ? '*' : '')}
+              filterOptions={this.props.filterOptions}
+            />
+          ) : (
+            <Select
+              {...classes('select')}            
+              simpleValue
+              {...commonSettings}
+              {...this.props}
+              ref={this.props.reference}
+              placeholder={placeholder + (isRequired ? '*' : '')}
+              filterOptions={this.props.filterOptions}
+              menuPortalTarget={<div></div>}
+            />
+          )}
         {useSearchIcon &&
           <div {...classes('search')}>
             <i {...classes({ element: 'search-ico', extra: materialClasses({ modifiers: 'medium' }).className })}>
@@ -118,6 +131,7 @@ Autocomplete.propTypes = {
   tabindex: PropTypes.number,
   isRequired: PropTypes.bool,
   placeholder: PropTypes.string,
+  tethered: PropTypes.bool,
 };
 
 export default Autocomplete;
