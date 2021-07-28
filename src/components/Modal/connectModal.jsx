@@ -28,7 +28,7 @@ import actions from './actions';
 
 const ESC_KEY = 27;
 
-export default function connectModal({ name, persistant = false }) {
+export function connectModal({ name, persistant = false }) {
   return (WrappedComponent) => {
     class ReduxModal extends Component {
       componentWillMount() {
