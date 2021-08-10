@@ -21,7 +21,7 @@
  */
 
 import Modal from './presenter';
-import connectModal from './connectModal';
+import { connectModal } from './connectModal';
 import actions from './actions';
 import reducer from './reducer';
 
