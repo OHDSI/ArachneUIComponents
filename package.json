@@ -33,7 +33,7 @@
         "react-datepicker": "0.40.0"
     },
     "dependencies": {
-        "classnames": "2.2.5",
+        "classnames": "2.5.1",
         "flexboxgrid": "6.3.1",
         "fuse.js": "3.0.3",
         "keymirror": "0.1.1",
