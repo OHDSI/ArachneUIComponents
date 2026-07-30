@@ -138,6 +138,21 @@ jobs:
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
           echo "Publishing $(node -p "require('./package.json').version") under dist-tag: $tag"
 
+      - name: Show the identity npm will match against
+        # npm authorises trusted publishing by comparing the OIDC claim below
+        # with the trusted publisher entry on npmjs.com. A mismatch in repo,
+        # workflow filename or environment yields a 404 on PUT (npm reports
+        # unauthorised writes as "not found"), so print it for comparison.
+        env:
+          REPO: ${{ github.repository }}
+          WORKFLOW_REF: ${{ github.workflow_ref }}
+          REF: ${{ github.ref }}
+        run: |
+          echo "repository:   $REPO"
+          echo "workflow_ref: $WORKFLOW_REF"
+          echo "ref:          $REF"
+          echo "environment:  (none - this job declares no environment:)"
+
       - name: Publish
         if: github.event_name == 'release' || inputs.dry-run == false
         # Authenticated by npm trusted publishing: npm exchanges the GitHub
