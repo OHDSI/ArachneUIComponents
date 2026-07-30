@@ -20,104 +20,100 @@
  *
  */
 
-const webpack = require('webpack');
-const fs = require('fs');
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const rootPath = path.resolve(__dirname, 'src');
-const componentsFolder = path.resolve(rootPath, 'components');
 const stylesFolder = path.resolve(rootPath, 'styles');
 
 const outputPath = path.join(__dirname, 'lib');
-const componentsOutputPath = path.resolve(outputPath, 'components');
 const stylesOutputPath = path.resolve(outputPath, 'styles');
 
+// Also used as sass includePaths so bare @imports such as
+// 'react-select/dist/react-select' and 'styles/vars-and-mixins' keep resolving.
+const modulePaths = [
+  rootPath,
+  path.resolve(__dirname, 'node_modules'),
+  path.resolve(__dirname, '..'),
+];
+
 const config = {
-  //entry: components,
+  // webpack 1 had no notion of modes and emitted an unoptimised bundle. Keeping
+  // 'none' preserves that: the published artifact stays unminified with no
+  // NODE_ENV baked in, leaving both choices to the consuming application.
+  mode: 'none',
   devtool: 'source-map',
-  entry: path.join(__dirname, 'src', 'index.js'),
+  entry: path.join(rootPath, 'index.js'),
   resolve: {
-    root: [
-      rootPath,
-      path.resolve(__dirname, 'node_modules'),
-      path.resolve(__dirname, '..'),
-    ],
-    extensions: ['', '.js', '.jsx']
-  },
-  sassLoader: {
-    includePaths: [
-      rootPath,
-      path.resolve(__dirname, 'node_modules'),
-      path.resolve(__dirname, '..'),
-    ],
-    data: '$isAppCentral: true; $isAppNode: false;',
-  },
-  eslint: {
-    configFile: path.join(__dirname, '.eslintrc'),
+    modules: modulePaths,
+    extensions: ['.js', '.jsx'],
   },
   module: {
-    preLoaders: [
-      {
-        test: /\.js$/,
-        include: [rootPath],
-        loader: 'eslint-loader',
-      },
-    ],
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         include: [rootPath],
-        loader: 'babel'
-      },
-      {
-        test: /\.json?$/,
-        exclude: /node_modules/,
-        loader: 'json'
+        use: ['babel-loader'],
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('css!sass'),
-        // loader: 'style!css!sass',
-      }
-    ]
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              // Font and icon url()s are root-relative paths that the consuming
+              // application serves at runtime (it copies lib/resources into its
+              // own dist), so they must reach the CSS untouched.
+              url: {
+                filter: url => !url.startsWith('/'),
+              },
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                includePaths: modulePaths,
+                // Silence deprecations raised inside node_modules only - the
+                // tootik package still uses @import internally. Deprecations in
+                // this package's own stylesheets are still reported.
+                quietDeps: true,
+              },
+            },
+          },
+        ],
+      },
+    ],
   },
   output: {
     path: outputPath,
     filename: 'index.js',
-    //filename: '[name]/index.js',
     libraryTarget: 'umd',
+    // webpack 5 defaults the UMD global to `self`, which is undefined outside a
+    // browser and makes the bundle throw on require() in Node/SSR. webpack 1
+    // used `root`; `this` restores equivalent behaviour.
+    globalObject: 'this',
+    clean: true,
   },
   externals: {
-    'react': 'react',
+    react: 'react',
     'react-dom': 'react-dom',
     'react-router': 'react-router',
-    'redux': 'Redux',
+    redux: 'Redux',
     'react-redux': 'react-redux',
     'redux-form': 'redux-form',
   },
   plugins: [
-    /*new CopyWebpackPlugin(
-      [
-        {
-          from: componentsFolder,
-          to: componentsOutputPath
-        },
-      ],
-      {
-        ignore: [
-          '*.js',
-          '*.jsx'
-        ],
-      }
-    ),*/
-    new ExtractTextPlugin('styles/components.css'),
-    new CopyWebpackPlugin(
-      [
+    new MiniCssExtractPlugin({
+      filename: 'styles/components.css',
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
         {
           from: stylesFolder,
-          to: stylesOutputPath
+          to: stylesOutputPath,
         },
         {
           from: path.join(rootPath, 'resources/fonts'),
@@ -127,9 +123,9 @@ const config = {
           from: path.join(rootPath, 'resources/material-design-icons'),
           to: path.join(outputPath, 'resources/material-design-icons'),
         },
-      ]
-    )
-  ]
+      ],
+    }),
+  ],
 };
 
 module.exports = config;

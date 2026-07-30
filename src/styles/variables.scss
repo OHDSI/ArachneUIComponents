@@ -20,8 +20,15 @@
  *
  */
 
-/* Prefix "ac" - Arachne Central - for namespacing of application's classes */
-$namespace: 'ac-';
+// Prefix "ac" - Arachne Central - for namespacing of application's classes.
+//
+// !default so consuming applications can rebind it, e.g.
+//   @forward 'arachne-ui-components/lib/styles/vars-and-mixins' with ($namespace: 'at-');
+// Mixins such as form() and tabbed-modal() interpolate this to build their
+// nested selectors, so a consumer that includes them under its own namespace
+// needs those selectors emitted with its prefix rather than 'ac-'. Under the old
+// @import model that happened implicitly via the shared global scope.
+$namespace: 'ac-' !default;
 
 $header-height: 56px;
 $sidebar-width: 126px;

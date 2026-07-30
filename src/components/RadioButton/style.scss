@@ -20,7 +20,8 @@
  *
  */
 
-@import 'styles/vars-and-mixins.scss';
+@use 'sass:color';
+@use 'styles/vars-and-mixins' as *;
 
 .#{$namespace} {
 
@@ -56,7 +57,7 @@
       flex-shrink: 0;
 
       &--disabled {
-        border-color: lighten($grey-placeholder, 25%);
+        border-color: color.adjust($grey-placeholder, $lightness: 25%);
       }
     }
 
@@ -71,7 +72,7 @@
       margin: 0 4px;
 
       &--disabled {
-        background: lighten($blue, 25%);
+        background: color.adjust($blue, $lightness: 25%);
       }
     }
 

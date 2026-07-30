@@ -20,8 +20,8 @@
  *
  */
 
-@import 'styles/vars-and-mixins.scss';
-@import 'styles/icons.scss';
+@use 'styles/vars-and-mixins' as *;
+@use 'styles/icons' as *;
 
 .#{$namespace} {
 

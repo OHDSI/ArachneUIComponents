@@ -49,7 +49,11 @@ numeral.register('locale', 'arachne-short', {
   },
 });
 
-const numberFormatter = {
+// Exported both ways on purpose: consumers use named imports
+// (`import { canUseDom } from 'services/Utils'`), which webpack 1 satisfied only
+// because babel transpiled this module to CommonJS. Under webpack 5 the module
+// stays ESM, so the named bindings have to be real exports.
+export const numberFormatter = {
   format: (value, form = 'full') => {
     if (form === 'short') {
       numeral.locale('arachne-short');
@@ -60,7 +64,7 @@ const numberFormatter = {
   },
 };
 
-function canUseDom() {
+export function canUseDom() {
   return (typeof window !== 'undefined' && typeof document !== 'undefined' && document.documentElement);
 }
 
