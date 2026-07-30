@@ -20,6 +20,10 @@
  *
  */
 
+@use 'sass:color';
+@use 'colors' as *;
+@use 'variables' as *;
+
 @mixin form-island() {
 	width: 100%;
 	background: $grey;
@@ -59,7 +63,7 @@
 }
 
 @mixin hover-color($color) {
-	color: darken($color, 15%);
+	color: color.adjust($color, $lightness: -15%);
 }
 
 @mixin title() {

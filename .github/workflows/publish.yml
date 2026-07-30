@@ -1,0 +1,124 @@
+name: Publish to npm
+
+# Publishes arachne-ui-components to the public npm registry.
+#
+# Triggered by publishing a GitHub Release (the tag must match the version in
+# package.json), or manually via the Actions tab for a dry run or to push a
+# build under a non-default dist-tag.
+#
+# Requires the repository secret NPM_TOKEN - an npm *automation* token, which
+# is the only kind that bypasses 2FA in CI.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      dist-tag:
+        description: 'npm dist-tag to publish under (latest, next, ...)'
+        required: true
+        default: 'latest'
+        type: string
+      dry-run:
+        description: 'Build and verify the tarball, but do not publish'
+        required: false
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+  id-token: write # required for npm provenance attestation
+
+jobs:
+  publish:
+    name: Build, verify and publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the release commit
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          # Matches the toolchain the package is developed against. The build
+          # cannot run on the Node versions this package originally targeted.
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify the release tag matches package.json
+        if: github.event_name == 'release'
+        env:
+          TAG_NAME: ${{ github.event.release.tag_name }}
+        run: |
+          tag="${TAG_NAME#v}"
+          pkg="$(node -p "require('./package.json').version")"
+          if [ "$tag" != "$pkg" ]; then
+            echo "::error::Release tag '$TAG_NAME' does not match package.json version '$pkg'."
+            exit 1
+          fi
+          echo "Publishing version $pkg"
+
+      - name: Build
+        # npm publish would run this anyway via prepublishOnly, but building
+        # here fails the run early and with a clearer message.
+        run: npm run build
+
+      - name: Verify the tarball is complete
+        # lib/ is gitignored and only exists after the build, so it reaches the
+        # tarball solely through the "files" allowlist in package.json. If that
+        # ever regresses, npm publishes a package with no code and no
+        # stylesheets and the failure only shows up downstream - so assert it
+        # here, before anything is pushed to the registry.
+        run: |
+          npm pack --dry-run --json > /tmp/pack.json
+          node - <<'EOF'
+          const packed = require('/tmp/pack.json')[0];
+          const files = packed.files.map(f => f.path);
+          const required = [
+            'lib/index.js',
+            'lib/styles/components.css',
+            'lib/styles/vars-and-mixins.scss',
+            'lib/styles/variables.scss',
+            'lib/styles/app.scss',
+          ];
+          const missing = required.filter(f => !files.includes(f));
+          if (missing.length) {
+            console.error('::error::Missing from tarball: ' + missing.join(', '));
+            process.exit(1);
+          }
+          console.log(`Tarball OK - ${files.length} files, ${(packed.size / 1e6).toFixed(1)} MB`);
+          EOF
+
+      - name: Resolve dist-tag
+        id: dist
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          IS_PRERELEASE: ${{ github.event.release.prerelease }}
+          TAG_INPUT: ${{ inputs.dist-tag }}
+        run: |
+          if [ "$EVENT_NAME" = "release" ]; then
+            if [ "$IS_PRERELEASE" = "true" ]; then tag="next"; else tag="latest"; fi
+          else
+            tag="$TAG_INPUT"
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "Using dist-tag: $tag"
+
+      - name: Publish
+        if: github.event_name == 'release' || inputs.dry-run == false
+        # --provenance publishes a signed attestation linking the tarball to
+        # this workflow run. Requires a public repo and id-token: write above;
+        # drop the flag if npm rejects it.
+        run: npm publish --provenance --access public --tag "$DIST_TAG"
+        env:
+          DIST_TAG: ${{ steps.dist.outputs.tag }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Dry run complete
+        if: github.event_name == 'workflow_dispatch' && inputs.dry-run == true
+        run: echo "Dry run - the package was built and verified but not published."

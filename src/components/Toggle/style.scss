@@ -20,8 +20,9 @@
  *
  */
 
-@import 'styles/vars-and-mixins.scss';
-@import 'react-toggle/style';
+@use 'sass:color';
+@use 'styles/vars-and-mixins' as *;
+@use 'react-toggle/style';
 
 .#{$namespace} {
 
@@ -54,11 +55,11 @@
         }
 
         & .react-toggle-thumb {
-          border-color: darken($green, 10%);
+          border-color: color.adjust($green, $lightness: -10%);
           left: 20px;
 
           &:hover {
-            border-color: darken($green, 10%);
+            border-color: color.adjust($green, $lightness: -10%);
           }
         }
 

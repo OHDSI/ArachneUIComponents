@@ -20,7 +20,8 @@
  *
  */
 
-@import 'styles/vars-and-mixins.scss';
+@use 'sass:color';
+@use 'styles/vars-and-mixins' as *;
 
 .#{$namespace} {
 
@@ -59,7 +60,7 @@
 			color: $white;
 
 			&:hover {
-				background: darken($blue-light, 10%);
+				background: color.adjust($blue-light, $lightness: -10%);
 			}
 		}
 
@@ -68,7 +69,7 @@
 			color: $white;
 
 			&:hover {
-				background: darken($grey-dark-light, 10%);
+				background: color.adjust($grey-dark-light, $lightness: -10%);
 			}
 
 			&:disabled {
@@ -91,7 +92,7 @@
 			color: $white;
 
 			&:hover {
-				background: darken($green, 10%);
+				background: color.adjust($green, $lightness: -10%);
 			}
 
 			&:disabled {

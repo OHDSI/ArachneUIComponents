@@ -20,6 +20,8 @@
  *
  */
 
+@use 'sass:map';
+
 $black: #464646;
 $white: #FFFFFF;
 
@@ -77,10 +79,10 @@ $colors: (
 );
 
 @function get-color($scheme, $color) {
-	@if map-has-key($colors, $scheme) {
-		@return map-get(map-get($colors, $scheme), $color);
+	@if map.has-key($colors, $scheme) {
+		@return map.get(map.get($colors, $scheme), $color);
 	}
 	@else {
-		@return map-get(default, $color);
+		@return map.get(map.get($colors, default), $color);
 	}
 }
