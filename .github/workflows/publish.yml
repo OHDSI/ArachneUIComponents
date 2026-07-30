@@ -54,8 +54,14 @@ jobs:
           # Matches the toolchain the package is developed against. The build
           # cannot run on the Node versions this package originally targeted.
           node-version: '24'
-          registry-url: 'https://registry.npmjs.org'
           cache: 'npm'
+          # Deliberately NO registry-url. Passing it makes setup-node write an
+          # .npmrc containing //registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}
+          # and export the placeholder NODE_AUTH_TOKEN=XXXXX-XXXXX-XXXXX-XXXXX
+          # when no real token exists. npm then authenticates with that bogus
+          # token instead of performing the OIDC exchange, and the registry
+          # rejects the write as a 404. Trusted publishing needs no .npmrc:
+          # registry.npmjs.org is already the default.
 
       - name: Check npm supports trusted publishing
         # Authentication is via OIDC (see the Publish step), which npm only
