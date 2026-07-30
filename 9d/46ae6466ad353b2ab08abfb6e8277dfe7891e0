@@ -1,0 +1,19 @@
+.github/workflows/publish.yml
+  s_dd61ee00b49b5f::t_8af6db63fdf3e2 141-155
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.17",
+  "base_commit_sha": "9d46ae6466ad353b2ab08abfb6e8277dfe7891e0",
+  "prompts": {},
+  "sessions": {
+    "s_dd61ee00b49b5f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c57bc288-521d-451c-88e9-064b58304965",
+        "model": "claude-opus-5"
+      },
+      "human_author": "User <user@example.com>"
+    }
+  }
+}
