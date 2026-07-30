@@ -20,8 +20,8 @@
  *
  */
 
-@import 'styles/vars-and-mixins.scss';
-//@import 'react-select/dist/react-select';
+@use 'styles/vars-and-mixins' as *;
+//@use 'react-select/dist/react-select';
 
 .Select-clear-zone {
 	display: none;

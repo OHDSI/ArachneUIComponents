@@ -20,11 +20,18 @@
  *
  */
 
-/**
- * All app's variables and mixins for @import by components
- */
+// The public style API of this package: every variable, mixin and function that
+// components (and consuming applications) are expected to use.
+//
+// Load it with `@use 'styles/vars-and-mixins' as *;` to get the members
+// unprefixed, the way the previous `@import` exposed them.
 
-@import 'colors.scss';
-@import 'icons.scss';
-@import 'mixins.scss';
-@import 'variables.scss';
+// 'variables' is forwarded first on purpose: mixins.scss loads it, and a module
+// can only be configured before its first load. Forwarding it up front lets a
+// consumer rebind $namespace, e.g.
+//   @forward 'arachne-ui-components/lib/styles/vars-and-mixins' with ($namespace: 'at-');
+// These are all definition-only modules, so the order emits no CSS of its own.
+@forward 'variables';
+@forward 'colors';
+@forward 'icons';
+@forward 'mixins';

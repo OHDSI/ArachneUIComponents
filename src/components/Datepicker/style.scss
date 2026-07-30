@@ -20,8 +20,8 @@
  *
  */
 
-@import 'styles/vars-and-mixins.scss';
-@import 'react-datepicker/dist/react-datepicker';
+@use 'styles/vars-and-mixins' as *;
+@use 'react-datepicker/dist/react-datepicker';
 
 .react-datepicker {
   @include block-shadow();
