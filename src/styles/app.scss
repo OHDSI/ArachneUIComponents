@@ -25,12 +25,12 @@
  */
 
  /* fix for IE, font-face must go first */
-@import 'fonts.scss';
-@import 'reset.scss';
-@import 'tooltip.scss';
-@import 'vars-and-mixins';
+@use 'fonts';
+@use 'reset';
+@use 'tooltip';
+@use 'vars-and-mixins' as *;
 
-@import 'flexboxgrid/css/flexboxgrid.min';
+@use 'flexboxgrid/css/flexboxgrid.min';
 
 html {
 	font-size: 62.5%;

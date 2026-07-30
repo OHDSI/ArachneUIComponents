@@ -20,7 +20,6 @@
  *
  */
 
-// eslint-disable-next-line import/extensions
 import React from 'react';
 import BEMHelper from 'services/BemHelper';
 import get from 'lodash/get';

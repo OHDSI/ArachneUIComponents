@@ -20,9 +20,20 @@
  *
  */
 
-@import 'tootik/scss/tootik.scss';
-@import 'variables.scss';
+@use 'tootik/scss/tootik.scss';
+@use 'variables' as *;
 
+/*
+ * The modifiers below extend each simple selector separately instead of the
+ * compound `[data-tootik][data-tootik-conf*='...']`. LibSass (node-sass) allowed
+ * extending a compound selector; Dart Sass rejects it outright:
+ * https://sass-lang.com/d/extend-compound
+ *
+ * Sass expands `@extend a, b` across every combination, so tootik's compound
+ * rules still yield `.#{$namespace}tooltip.#{$namespace}tooltip--right`, which is
+ * how these BEM modifiers are meant to be applied - always alongside the base
+ * `tooltip` class.
+ */
 .#{$namespace} {
 	&tooltip {
 		@extend [data-tootik];
@@ -32,22 +43,22 @@
 	}
 
 	&tooltip--right {
-		@extend [data-tootik][data-tootik-conf*='right'];
+		@extend [data-tootik], [data-tootik-conf*='right'];
 	}
 
 	&tooltip--bottom {
-		@extend [data-tootik][data-tootik-conf*='bottom'];
+		@extend [data-tootik], [data-tootik-conf*='bottom'];
 	}
 
 	&tooltip--left {
-		@extend [data-tootik][data-tootik-conf*='left'];
+		@extend [data-tootik], [data-tootik-conf*='left'];
 	}
 
 	&tooltip--multiline {
-		@extend [data-tootik][data-tootik-conf*='multiline'];
+		@extend [data-tootik], [data-tootik-conf*='multiline'];
 	}
 
 	&tooltip--square {
-		@extend [data-tootik][data-tootik-conf*='square'];		
+		@extend [data-tootik], [data-tootik-conf*='square'];
 	}
 }
