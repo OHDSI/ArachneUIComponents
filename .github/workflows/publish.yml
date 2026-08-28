@@ -6,8 +6,11 @@ name: Publish to npm
 # package.json), or manually via the Actions tab for a dry run or to push a
 # build under a non-default dist-tag.
 #
-# Requires the repository secret NPM_TOKEN - an npm *automation* token, which
-# is the only kind that bypasses 2FA in CI.
+# Authentication uses npm trusted publishing (OIDC) rather than a stored token:
+# the package on npmjs.com is configured to trust this repository and workflow
+# filename, and npm exchanges GitHub's OIDC token for short-lived credentials.
+# Renaming this file or moving the job to a different repo therefore breaks
+# publishing until the trusted publisher entry on npmjs.com is updated to match.
 
 on:
   release:
@@ -15,10 +18,17 @@ on:
   workflow_dispatch:
     inputs:
       dist-tag:
-        description: 'npm dist-tag to publish under (latest, next, ...)'
+        # NOT the version being published - that always comes from
+        # package.json. This is only the npm channel the release is tagged
+        # with, i.e. what `npm install arachne-ui-components@<tag>` resolves to.
+        description: 'npm channel to publish under (the version comes from package.json)'
         required: true
         default: 'latest'
-        type: string
+        type: choice
+        options:
+          - latest
+          - next
+          - beta
       dry-run:
         description: 'Build and verify the tarball, but do not publish'
         required: false
@@ -44,8 +54,26 @@ jobs:
           # Matches the toolchain the package is developed against. The build
           # cannot run on the Node versions this package originally targeted.
           node-version: '24'
-          registry-url: 'https://registry.npmjs.org'
           cache: 'npm'
+          # Deliberately NO registry-url. Passing it makes setup-node write an
+          # .npmrc containing //registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}
+          # and export the placeholder NODE_AUTH_TOKEN=XXXXX-XXXXX-XXXXX-XXXXX
+          # when no real token exists. npm then authenticates with that bogus
+          # token instead of performing the OIDC exchange, and the registry
+          # rejects the write as a 404. Trusted publishing needs no .npmrc:
+          # registry.npmjs.org is already the default.
+
+      - name: Check npm supports trusted publishing
+        # Authentication is via OIDC (see the Publish step), which npm only
+        # implements from 11.5.1. On an older CLI the job would fail much later
+        # with a confusing auth error, so check it here.
+        run: |
+          v="$(npm --version)"
+          if [ "$(printf '%s\n11.5.1\n' "$v" | sort -V | head -1)" != "11.5.1" ]; then
+            echo "::error::npm $v does not support trusted publishing (OIDC). 11.5.1 or newer is required."
+            exit 1
+          fi
+          echo "npm $v supports trusted publishing."
 
       - name: Install dependencies
         run: npm ci
@@ -106,18 +134,44 @@ jobs:
           else
             tag="$TAG_INPUT"
           fi
+          # npm rejects any dist-tag that parses as a SemVer range, because it
+          # would make `npm install <pkg>@<tag>` ambiguous. Catch it here with
+          # an explanatory message instead of failing later in `npm publish`.
+          if printf '%s' "$tag" | grep -qE '^v?[0-9]+(\.[0-9]+)*'; then
+            echo "::error::'$tag' looks like a version, but this input is the npm channel (latest, next, beta). The version to publish is taken from package.json."
+            exit 1
+          fi
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
-          echo "Using dist-tag: $tag"
+          echo "Publishing $(node -p "require('./package.json').version") under dist-tag: $tag"
+
+      - name: Show the identity npm will match against
+        # npm authorises trusted publishing by comparing the OIDC claim below
+        # with the trusted publisher entry on npmjs.com. A mismatch in repo,
+        # workflow filename or environment yields a 404 on PUT (npm reports
+        # unauthorised writes as "not found"), so print it for comparison.
+        env:
+          REPO: ${{ github.repository }}
+          WORKFLOW_REF: ${{ github.workflow_ref }}
+          REF: ${{ github.ref }}
+        run: |
+          echo "repository:   $REPO"
+          echo "workflow_ref: $WORKFLOW_REF"
+          echo "ref:          $REF"
+          echo "environment:  (none - this job declares no environment:)"
 
       - name: Publish
         if: github.event_name == 'release' || inputs.dry-run == false
+        # Authenticated by npm trusted publishing: npm exchanges the GitHub
+        # OIDC token (id-token: write, above) for short-lived credentials, so
+        # no NPM_TOKEN is involved. Deliberately no NODE_AUTH_TOKEN here - if
+        # one is set npm uses it instead, and a 2FA-protected account then
+        # fails with EOTP because CI cannot supply a one-time password.
+        #
         # --provenance publishes a signed attestation linking the tarball to
-        # this workflow run. Requires a public repo and id-token: write above;
-        # drop the flag if npm rejects it.
+        # this workflow run.
         run: npm publish --provenance --access public --tag "$DIST_TAG"
         env:
           DIST_TAG: ${{ steps.dist.outputs.tag }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Dry run complete
         if: github.event_name == 'workflow_dispatch' && inputs.dry-run == true
