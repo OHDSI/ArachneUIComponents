@@ -1,0 +1,14 @@
+package-lock.json
+  h_e8f313570bc386 2733-2735,3501-3503,4451-4453
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "074a34eacae5b4ccabb59aae3acc588831ca9932",
+  "prompts": {},
+  "humans": {
+    "h_e8f313570bc386": {
+      "author": "konstjar <user@example.com>"
+    }
+  }
+}
