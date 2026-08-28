@@ -1,0 +1,14 @@
+package.json
+  h_e8f313570bc386 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "b572b5627ff56903559feaee7f68ccde027dbdeb",
+  "prompts": {},
+  "humans": {
+    "h_e8f313570bc386": {
+      "author": "konstjar <user@example.com>"
+    }
+  }
+}
