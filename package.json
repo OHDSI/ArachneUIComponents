@@ -1,6 +1,6 @@
 {
     "name": "arachne-ui-components",
-    "version": "1.21.1",
+    "version": "1.21.2",
     "license": "Apache-2.0",
     "repository": {
         "type": "git",
@@ -46,7 +46,7 @@
         "keymirror": "0.1.1",
         "lodash": "4.18.1",
         "mini-css-extract-plugin": "^2.10.2",
-        "moment": "^2.30.1",
+        "moment": "^2.31.0",
         "numeral": "2.0.6",
         "rc-slider": "5.4.3",
         "react": "15.6.2",
@@ -68,12 +68,15 @@
         "sass": "^1.102.0",
         "sass-loader": "^16.0.8",
         "urijs": "1.19.11",
+        "uuid": "^11.1.1",
         "webpack": "^5.109.2",
         "webpack-cli": "^5.1.4"
     },
     "overrides": {
         "lodash": "4.18.1",
-        "uuid": "^3.4.0",
+        "react-sanfona": {
+            "uuid": "$uuid"
+        },
         "node-fetch": "^2.7.0"
     }
 }

@@ -52,6 +52,16 @@ const config = {
   module: {
     rules: [
       {
+        test: require.resolve('react-sanfona/dist-modules/AccordionItemTitle'),
+        use: path.resolve(__dirname, 'build/accordion-title-loader.cjs'),
+      },
+      {
+        // This Babel 6 module reads uuid.default.v4(). Scope the compatibility
+        // export to AccordionItem so other imports use the normal uuid API.
+        test: require.resolve('react-sanfona/dist-modules/AccordionItem'),
+        resolve: { alias: { uuid$: path.join(rootPath, 'services/accordionUuid.cjs') } },
+      },
+      {
         test: /\.jsx?$/,
         include: [rootPath],
         use: ['babel-loader'],
