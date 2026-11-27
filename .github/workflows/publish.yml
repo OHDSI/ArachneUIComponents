@@ -96,6 +96,9 @@ jobs:
         # here fails the run early and with a clearer message.
         run: npm run build
 
+      - name: Verify accordion accessibility references in the bundle
+        run: node --test test/accordion-aria.test.cjs
+
       - name: Verify the tarball is complete
         # lib/ is gitignored and only exists after the build, so it reaches the
         # tarball solely through the "files" allowlist in package.json. If that
